@@ -23,16 +23,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations: # Add this line
+    sdk: flutter
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  flutter_svg: ^0.18.0
+  flutter_svg:
   google_fonts: ^1.1.1
   provider: ^4.3.2+4
   mobx:
   flutter_mobx:
+  table_calendar:
+  intl: ^0.16.1
 
 
 
@@ -61,6 +65,21 @@ flutter:
   assets:
      - images/appetit_logo.svg
      - images/CombinedShape45.svg
+     - images/plus.svg
+     - images/seach.svg
+     - images/pedidoFinalizado.svg
+     - images/bairanMask.png
+     - images/bariran2Mask.png
+     - images/cuscuzSimples.png
+     - images/cuscuzCompleto.png
+     - images/justMask.png
+     - images/lingua.png
+     - images/misto.png
+     - images/paoCaseiro.png
+     - images/paoCaseiroCompleto.png
+     - images/calendario.png
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
