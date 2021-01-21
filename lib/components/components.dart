@@ -141,10 +141,11 @@ mixin ComponentsPage{
     return opc.isEmpty? Container(height: MediaQuery.of(context).size.height*0.2,):
     Column(
       children: [
-        Card(
-          shape: RoundedRectangleBorder(
+        Container(width: MediaQuery.of(context).size.width*0.9,
+          height:MediaQuery.of(context).size.height*0.1 ,
+          decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
-              side: BorderSide(
+              border: Border.all(
                   color: Colors.grey[400]
               )
           ),
@@ -171,13 +172,16 @@ mixin ComponentsPage{
 
           ),
         ),
-        Card(
-          shape: RoundedRectangleBorder(
+        Container(
+          width: MediaQuery.of(context).size.width*0.9,
+          height:MediaQuery.of(context).size.height*0.1 ,
+          decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
-              side: BorderSide(
+              border: Border.all(
                   color: Colors.grey[400]
               )
           ),
+          margin: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.008 ),
 
           child: ListTile(
             title: Text(opc[1],
@@ -206,10 +210,21 @@ mixin ComponentsPage{
     );
   }
 
-  Widget cardCustom(String text,String urlImage,String price,Color cardColor,{String subText='',Color colorText=Colors.black}){
+  Widget cardCustom(BuildContext context,String text,String urlImage,String price,Color cardColor,{String subText='',Color colorText=Colors.black}){
 
-    return Card(
-      color: cardColor,
+
+    return Container(
+      width: MediaQuery.of(context).size.width*0.9,
+      height:MediaQuery.of(context).size.height*0.11 ,
+      decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(
+              color: Colors.grey[400]
+          )
+      ),
+
+
       child: ListTile(
         title: Text(text,
           style: GoogleFonts.openSans(
@@ -261,35 +276,41 @@ mixin ComponentsPage{
                   ),
                 ),
               ),
-              InkWell(
-                onTap: (){
-                  productVM.changeProduct(groupProduct.product[index]);
-                  Navigator.of(context).pushReplacementNamed('/itemOptions');
-                },
-                child:cardCustom(
-                    groupProduct.product[index].name,groupProduct.product[index].urlPicture,
-                    '${groupProduct.product[index].price}',
-                    productVM.searchProduct(groupProduct.product[index])?Color(0xffFF8822):Colors.white,
-                  subText: groupProduct.product[index].options.isNotEmpty?
-                  '${groupProduct.product[index].options[0]} ou ${groupProduct.product[index].options[1]} ':'',
-                  colorText:  productVM.searchProduct(groupProduct.product[index])?Colors.white:Colors.black
+              Padding(
+                padding: const EdgeInsets.only(bottom:8.0),
+                child: InkWell(
+                  onTap: (){
+                    productVM.changeProduct(groupProduct.product[index]);
+                    Navigator.of(context).pushReplacementNamed('/itemOptions');
+                  },
+                  child:cardCustom(context,
+                      groupProduct.product[index].name,groupProduct.product[index].urlPicture,
+                      '${groupProduct.product[index].price}',
+                      productVM.searchProduct(groupProduct.product[index])?Color(0xffFF8822):Colors.white,
+                    subText: groupProduct.product[index].options.isNotEmpty?
+                    '${groupProduct.product[index].options[0]} ou ${groupProduct.product[index].options[1]} ':'',
+                    colorText:  productVM.searchProduct(groupProduct.product[index])?Colors.white:Colors.black
+                  ),
                 ),
               )
             ],
-          ): InkWell(
-            onTap: (){
+          ): Padding(
+            padding: const EdgeInsets.only(bottom:8.0),
+            child: InkWell(
+              onTap: (){
 
-              productVM.changeProduct(groupProduct.product[index]);
-              Navigator.of(context).pushReplacementNamed('/itemOptions');
+                productVM.changeProduct(groupProduct.product[index]);
+                Navigator.of(context).pushReplacementNamed('/itemOptions');
 
 
-            },
-            child: cardCustom(groupProduct.product[index].name,groupProduct.product[index].urlPicture,
-                '${groupProduct.product[index].price}',
-                productVM.searchProduct(groupProduct.product[index])?Color(0xffFF8822):Colors.white,
-                subText:groupProduct.product[index].options.isNotEmpty?
-                '${groupProduct.product[index].options[0]} ou ${groupProduct.product[index].options[1]} ':'',
-                colorText:  productVM.searchProduct(groupProduct.product[index])?Colors.white:Colors.black
+              },
+              child: cardCustom(context,groupProduct.product[index].name,groupProduct.product[index].urlPicture,
+                  '${groupProduct.product[index].price}',
+                  productVM.searchProduct(groupProduct.product[index])?Color(0xffFF8822):Colors.white,
+                  subText:groupProduct.product[index].options.isNotEmpty?
+                  '${groupProduct.product[index].options[0]} ou ${groupProduct.product[index].options[1]} ':'',
+                  colorText:  productVM.searchProduct(groupProduct.product[index])?Colors.white:Colors.black
+              ),
             ),
           );
         });
@@ -332,12 +353,15 @@ mixin ComponentsPage{
                   ),
                 ),
               ),
-              cardCustom(productSolicitation.client.name,productSolicitation.client.urlPicture,'${productSolicitation.product[index].price}',
-                  Colors.white,
-                subText: 'x${productSolicitation.product[index].name}'
+              Padding(
+                padding: const EdgeInsets.only(bottom:8.0),
+                child: cardCustom(context,productSolicitation.client.name,productSolicitation.client.urlPicture,'${productSolicitation.product[index].price}',
+                    Colors.white,
+                  subText: 'x${productSolicitation.product[index].name}'
+                ),
               )
             ],
-          ): cardCustom(productSolicitation.product[index].name,productSolicitation.product[index].urlPicture,'${productSolicitation.product[index].price}',Colors.white);
+          ): Padding(padding: const EdgeInsets.only(bottom:8.0),child:cardCustom(context,productSolicitation.product[index].name,productSolicitation.product[index].urlPicture,'${productSolicitation.product[index].price}',Colors.white));
         });
   }
 

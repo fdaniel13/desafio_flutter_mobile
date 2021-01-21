@@ -79,7 +79,7 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                     Container(
                       child: Column(
                         children: [
-                         cardCustom(productVM.product.name,productVM.product.urlPicture, 'R\$${productVM.product.price}', Colors.white),
+                         cardCustom(context,productVM.product.name,productVM.product.urlPicture, 'R\$${productVM.product.price}', Colors.white),
                           Divider(),
                           productVM.product.options.isNotEmpty? Container(
                             height: sizeH*0.12,
