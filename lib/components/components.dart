@@ -232,11 +232,14 @@ mixin ComponentsPage{
              color:colorText
           ),
         ),
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(urlImage),
-          ],
+        leading: Container(
+          width: MediaQuery.of(context).size.width*0.1,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(urlImage),
+            ],
+          ),
         ),
         subtitle: Text(subText,
           style: GoogleFonts.openSans(
