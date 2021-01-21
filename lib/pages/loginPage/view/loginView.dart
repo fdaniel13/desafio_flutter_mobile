@@ -1,5 +1,5 @@
 
-import 'package:desafio_flutter_mobile/pages/login/viewModel/loginViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/loginPage/viewModel/loginViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

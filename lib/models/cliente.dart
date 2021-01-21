@@ -6,6 +6,7 @@ class Client{
   String _name;
   String _urlPicture;
 
+  Client(this._name,this._urlPicture);
 
   String get name => this._name;
   String get  urlPicture =>this._urlPicture;

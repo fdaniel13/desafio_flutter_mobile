@@ -3,22 +3,37 @@ import 'dart:ffi';
 import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 
-class Productsolicitation{
+class ProductSolicitation{
 
   Client _client;
-  Product _product;
+  List<Product> _product;
+  Map<int,Product> _productOrder;
   DateTime _date;
-  Double  _total;
+
+  ProductSolicitation(this._client,this._product,this._date);
 
    set client(Client client)=>this._client=client;
-   set product(Product product)=>this._product=product;
+   set product(List<Product> product)=>this._product=product;
    set date(DateTime date)=>this._date=date;
-   set total(Double total)=>this._total=total;
+   set productOrder(Map<int,Product> productOrder)=>this._productOrder=productOrder;
 
   Client get client=>this._client;
-  Product get product=>this._product;
+  List<Product> get product=>this._product;
   DateTime get date=>this._date;
-  Double get total=>this._total;
+
+
+  //possivel função do viewModel
+  double totalPrice(){
+    double total=0;
+    _product.forEach((e) =>
+
+         total+=e.price
+    );
+
+    return total;
+
+  }
+
 
 
 }

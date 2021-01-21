@@ -5,6 +5,8 @@ class GroupProduct{
   String _name;
   List<Product> _product;
 
+  GroupProduct(this._name,this._product);
+
   set name(String name)=>this._name=name;
   set product(List<Product> product)=>this._product=product;
 
