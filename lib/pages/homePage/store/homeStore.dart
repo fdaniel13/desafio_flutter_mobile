@@ -43,6 +43,15 @@ abstract class HomeStoreBase with Store{
 
   ].asObservable();
 
+  @observable
+  ObservableList<Client> clients=[
+   Client('Justine Marshall', 'images/justMask.png'),
+    Client('Bairam Frootan', 'images/bairanMask.png'),
+    Client('Bairam Frootan', 'images/bariran2Mask.png')
+
+  ].asObservable();
+  
+
 
   @action
   addItem(ProductSolicitation productSolicitation){

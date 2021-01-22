@@ -1,6 +1,8 @@
+import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/groupProduct.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -215,13 +217,21 @@ mixin ComponentsPage{
 
     return Container(
       width: MediaQuery.of(context).size.width*0.9,
-      height:MediaQuery.of(context).size.height*0.11 ,
+      height:MediaQuery.of(context).size.height*0.105,
+
       decoration: BoxDecoration(
           color: cardColor,
           borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(
-              color: Colors.grey[400]
-          )
+        border: Border.all(width:0,color: Colors.white),
+
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: MediaQuery.of(context).size.height*0.003,
+
+
+          ),
+        ],
       ),
 
 
@@ -257,7 +267,7 @@ mixin ComponentsPage{
     );
   }
 
-  Widget customListProduct(GroupProduct groupProduct,{Product product,ProductViewModel productVM}){
+  Widget customListProduct(GroupProduct groupProduct,Product product,ProductViewModel productVM){
 
 
 
@@ -330,7 +340,7 @@ mixin ComponentsPage{
       },
       itemBuilder: (context,index){
 
-        return customListProduct(groupProductList[index],product: product,productVM: productVM);
+        return customListProduct(groupProductList[index],product, productVM);
       },
     );
   }
@@ -402,7 +412,7 @@ mixin ComponentsPage{
                       fontWeight: FontWeight.w600
                   ),
                 ),
-                Text('1 de 3',
+                Text('${nStep} de 3',
                   style: GoogleFonts.openSans(
                       fontWeight: FontWeight.w400
                   ),)
@@ -684,6 +694,65 @@ mixin ComponentsPage{
 
     );
   }
+
+   Widget customListClients(List<Client> client,ClientViewModel clientVM){
+
+     return ListView.builder(
+         shrinkWrap: true,
+         physics: NeverScrollableScrollPhysics(),
+         itemCount: client.length,
+         itemBuilder:(context,index){
+           return index==0?Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               Padding(
+                 padding: const EdgeInsets.only(bottom:8.0),
+                 child: Text('Meus clientes',
+                   style: GoogleFonts.openSans(
+                       textStyle: TextStyle(
+                           fontWeight: FontWeight.w600
+                       )
+                   ),
+                 ),
+               ),
+               Padding(
+                 padding: const EdgeInsets.only(bottom:8.0),
+                 child: InkWell(
+                   onTap: (){
+                     clientVM.clickLogic(client[index]);
+
+
+
+                   },
+                   child:cardCustom(context,
+                       client[index].name,client[index].urlPicture,
+                       '',
+                       clientVM.searchClient (client[index])?Color(0xffFF8822):Colors.white,
+                       colorText:  clientVM.searchClient (client[index])?Colors.white:Colors.black
+                   ),
+                 ),
+               )
+             ],
+           ): Padding(
+             padding: const EdgeInsets.only(bottom:8.0),
+             child: InkWell(
+               onTap: (){
+
+
+                 clientVM.clickLogic(client[index]);
+
+
+               },
+               child:cardCustom(context,
+                   client[index].name,client[index].urlPicture,
+                   '',
+                   clientVM.searchClient (client[index])?Color(0xffFF8822):Colors.white,
+                   colorText: clientVM.searchClient (client[index])?Colors.white:Colors.black
+               ),
+             ),
+           );
+         });
+   }
 
 }
 

@@ -39,6 +39,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$clientsAtom = Atom(name: 'HomeStoreBase.clients');
+
+  @override
+  ObservableList<Client> get clients {
+    _$clientsAtom.reportRead();
+    return super.clients;
+  }
+
+  @override
+  set clients(ObservableList<Client> value) {
+    _$clientsAtom.reportWrite(value, super.clients, () {
+      super.clients = value;
+    });
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -57,7 +72,8 @@ mixin _$HomeStore on HomeStoreBase, Store {
   String toString() {
     return '''
 historicProduct: ${historicProduct},
-groupProduct: ${groupProduct}
+groupProduct: ${groupProduct},
+clients: ${clients}
     ''';
   }
 }

@@ -70,7 +70,7 @@ class _ProductViewState extends State<ProductView> with ComponentsPage{
                 ),
               ),
               onTap: (){
-                //Navigator.of(context).pushReplacementNamed ('/clientOrdered');
+                Navigator.of(context).pushReplacementNamed ('/clientOrdered');
 
               },
             )

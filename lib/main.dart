@@ -1,4 +1,5 @@
 
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/view/historicView/historic.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productOptionsView.dart';
