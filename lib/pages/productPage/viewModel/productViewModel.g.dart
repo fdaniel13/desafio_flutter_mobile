@@ -9,6 +9,14 @@ part of 'productViewModel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ProductViewModel on ProductViewModelBase, Store {
+  Computed<double> _$costTotalComputed;
+
+  @override
+  double get costTotal =>
+      (_$costTotalComputed ??= Computed<double>(() => super.costTotal,
+              name: 'ProductViewModelBase.costTotal'))
+          .value;
+
   final _$productAtom = Atom(name: 'ProductViewModelBase.product');
 
   @override
@@ -99,8 +107,35 @@ mixin _$ProductViewModel on ProductViewModelBase, Store {
     });
   }
 
+  final _$quantityForItemAtom =
+      Atom(name: 'ProductViewModelBase.quantityForItem');
+
+  @override
+  List<int> get quantityForItem {
+    _$quantityForItemAtom.reportRead();
+    return super.quantityForItem;
+  }
+
+  @override
+  set quantityForItem(List<int> value) {
+    _$quantityForItemAtom.reportWrite(value, super.quantityForItem, () {
+      super.quantityForItem = value;
+    });
+  }
+
   final _$ProductViewModelBaseActionController =
       ActionController(name: 'ProductViewModelBase');
+
+  @override
+  dynamic quantityForIt() {
+    final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
+        name: 'ProductViewModelBase.quantityForIt');
+    try {
+      return super.quantityForIt();
+    } finally {
+      _$ProductViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic resetSate() {
@@ -209,7 +244,9 @@ opc: ${opc},
 quantity: ${quantity},
 cartItems: ${cartItems},
 observations: ${observations},
-completeItem: ${completeItem}
+completeItem: ${completeItem},
+quantityForItem: ${quantityForItem},
+costTotal: ${costTotal}
     ''';
   }
 }

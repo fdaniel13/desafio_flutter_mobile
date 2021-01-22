@@ -1,4 +1,5 @@
 import 'package:desafio_flutter_mobile/models/product.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 
 part 'productViewModel.g.dart';
@@ -23,6 +24,19 @@ abstract class ProductViewModelBase with Store {
   @observable
   bool completeItem=false;
 
+  @observable
+  List<int> quantityForItem=[];
+
+
+   @action
+   quantityForIt(){
+
+     if(cartItems.isNotEmpty) {
+       quantityForItem.add(quantity);
+     }
+
+   }
+
   @action
   resetSate(){
     product=Product('','images/justMask.png' , 0,['','']);
@@ -31,6 +45,7 @@ abstract class ProductViewModelBase with Store {
     cartItems=[];
     observations='';
     completeItem=false;
+    quantityForItem=[];
   }
 
 
@@ -72,6 +87,22 @@ abstract class ProductViewModelBase with Store {
   searchProduct(Product _product){
     if(cartItems.isNotEmpty) return cartItems.contains(_product);
     return false;
+  }
+
+  @computed
+  double get costTotal{
+    double  cost=0;
+    int index=0;
+
+    cartItems.forEach((prod) {
+
+        cost+=prod.price*quantityForItem[index];
+        index++;
+
+    });
+
+
+    return cost;
   }
 
 }

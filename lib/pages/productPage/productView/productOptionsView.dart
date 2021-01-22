@@ -35,6 +35,67 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
 
 
     return  Scaffold(
+      bottomNavigationBar: productVM.product.options.isEmpty?
+      Container(
+        height: MediaQuery.of(context).size.height*0.1,
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.only(right: sizeW*0.05,left:sizeW*0.05 ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                IconButton(icon:Icon(Icons.remove,
+                  color: Colors.grey,
+                ), onPressed: productVM.removeOne),
+                Text('${productVM.quantity}',
+                  style: GoogleFonts.openSans(
+                      color: Colors.black
+                  ),
+                ),
+                IconButton(icon:Icon(Icons.add,
+                  color: Colors.orange,
+                ), onPressed: productVM.addOne)
+              ],
+            ),
+            InkWell(
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.07,
+                width: MediaQuery.of(context).size.width*0.5,
+                margin: EdgeInsets.only(right: sizeW*0.02),
+                decoration: BoxDecoration(
+                    color: Color(0xffFF8822),
+                    borderRadius:BorderRadius.circular(MediaQuery.of(context).size.width*0.01)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Adicionar',
+                      style: GoogleFonts.openSans(
+                          fontWeight: FontWeight.w600,
+                        color: Colors.white
+                      ),
+                    ),
+                    Text('R\$${productVM.product.price}',
+                      style: GoogleFonts.openSans(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white))
+                  ],
+                ),
+              ),
+              onTap: (){
+                productVM.cart();
+                productVM.quantityForIt();
+                print(productVM.quantityForItem);
+                print(productVM.cartItems.length);
+                Navigator.of(context).pushReplacementNamed ('/itemOrdered');
+
+              },
+            )
+          ],
+        ),
+      ):Container(width: 0,height: 0),
       body:SingleChildScrollView(
           child: Observer(
             builder: (_){
@@ -101,13 +162,16 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                                         fontSize: sizeH*0.023,
                                         height:sizeH*0.0025
                                     )),
+
                               ],
                             ),
-                          ) :Container(height: sizeH*0.12),
+
+                          ) :Container(height: sizeH*0.35,width: sizeW*0.9,),
                           Builder(
                               builder: (context)=>checkedCard(productVM.product.options,
                                   context,_check,checkState,productVM)
                           )
+
 
 
                         ],

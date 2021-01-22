@@ -138,7 +138,7 @@ mixin ComponentsPage{
 
 
 
-    return opc.isEmpty? Container(height: MediaQuery.of(context).size.height*0.2,):
+    return opc.isEmpty? Container(height:0,width: 0,):
     Column(
       children: [
         Container(width: MediaQuery.of(context).size.width*0.9,
@@ -616,11 +616,12 @@ mixin ComponentsPage{
   }
 
 
-   snackBarCustom(BuildContext context, ProductViewModel productViewModel,{String page='productOptions'}){
+   snackBarCustom(BuildContext context, ProductViewModel productViewModel){
 
       Scaffold.of(context).showSnackBar(
-        page=='productOptions'?
+
         SnackBar(
+        duration: Duration(hours: 1),
             backgroundColor:Colors.white,
             content:Observer(
               builder: (_){
@@ -667,6 +668,7 @@ mixin ComponentsPage{
                         ),
                         onTap: (){
                           productViewModel.cart();
+                          productViewModel.quantityForIt();
                           Navigator.of(context).pushReplacementNamed ('/itemOrdered');
 
                         },
@@ -676,58 +678,6 @@ mixin ComponentsPage{
                 );
               },
             )
-        )
-        :
-        SnackBar(
-            duration: Duration(hours: 1),
-            backgroundColor:Color(0xffFF8822),
-            content: Observer(builder: (context){
-              return   Container(
-                height: MediaQuery.of(context).size.height*0.07,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text('Total:R\$${productViewModel.quantity}',
-                          style: GoogleFonts.openSans(
-                              color: Colors.white,
-                            fontWeight: FontWeight.w600
-                          ),
-                        ),
-                      ],
-                    ),
-                    InkWell(
-                      child: Container(
-                        height: MediaQuery.of(context).size.height*0.07,
-                        width: MediaQuery.of(context).size.width*0.5,
-                        decoration: BoxDecoration(
-                            color: Color(0xffFF8822),
-                            borderRadius:BorderRadius.circular(MediaQuery.of(context).size.width*0.01)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text('Adicionar',
-                              style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600
-                              ),
-                            ),
-                            Text('R\$${productViewModel.product.price}')
-                          ],
-                        ),
-                      ),
-                      onTap: (){
-                        productViewModel.cart();
-
-
-                      },
-                    )
-                  ],
-                ),
-              );
-            })
         )
 
 
