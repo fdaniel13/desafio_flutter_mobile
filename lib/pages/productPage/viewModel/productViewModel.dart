@@ -1,5 +1,4 @@
 import 'package:desafio_flutter_mobile/models/product.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 
 part 'productViewModel.g.dart';
@@ -28,14 +27,14 @@ abstract class ProductViewModelBase with Store {
   List<int> quantityForItem=[];
 
 
-   @action
-   quantityForIt(){
+  @action
+  quantityForIt(){
 
-     if(cartItems.isNotEmpty) {
-       quantityForItem.add(quantity);
-     }
+    if(cartItems.isNotEmpty) {
+      quantityForItem.add(quantity);
+    }
 
-   }
+  }
 
   @action
   resetSate(){
@@ -96,8 +95,8 @@ abstract class ProductViewModelBase with Store {
 
     cartItems.forEach((prod) {
 
-        cost+=prod.price*quantityForItem[index];
-        index++;
+      cost+=prod.price*quantityForItem[index];
+      index++;
 
     });
 

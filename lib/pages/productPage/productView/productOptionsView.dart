@@ -169,7 +169,7 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                           ) :Container(height: sizeH*0.35,width: sizeW*0.9,),
                           Builder(
                               builder: (context)=>checkedCard(productVM.product.options,
-                                  context,_check,checkState,productVM)
+                                  context,_check,checkState,productViewModel: productVM)
                           )
 
 

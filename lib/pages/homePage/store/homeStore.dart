@@ -5,7 +5,6 @@ import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:mobx/mobx.dart';
 
 
-
 part 'homeStore.g.dart';
 
 class HomeStore = HomeStoreBase with _$HomeStore;
@@ -25,12 +24,12 @@ abstract class HomeStoreBase with Store{
 
   @observable
   ObservableList<GroupProduct> groupProduct=[
-  GroupProduct('Cuscuz',
-  [
-    Product('Cuscuz simples','images/cuscuzSimples.png',2.25,['milho','arroz']),
-    Product('Cuscuz completo','images/cuscuzCompleto.png',3.25,['milho','arroz'])
-  ]
-  ),
+    GroupProduct('Cuscuz',
+        [
+          Product('Cuscuz simples','images/cuscuzSimples.png',2.25,['milho','arroz']),
+          Product('Cuscuz completo','images/cuscuzCompleto.png',3.25,['milho','arroz'])
+        ]
+    ),
     GroupProduct('Pães',
         [
           Product('Pão caseiro','images/paoCaseiro.png',2.25,[]),
@@ -45,12 +44,11 @@ abstract class HomeStoreBase with Store{
 
   @observable
   ObservableList<Client> clients=[
-   Client('Justine Marshall', 'images/justMask.png'),
+    Client('Justine Marshall', 'images/justMask.png'),
     Client('Bairam Frootan', 'images/bairanMask.png'),
     Client('Bairam Frootan', 'images/bariran2Mask.png')
 
   ].asObservable();
-  
 
 
   @action

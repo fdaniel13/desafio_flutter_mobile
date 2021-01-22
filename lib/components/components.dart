@@ -136,7 +136,7 @@ mixin ComponentsPage{
     );
   }
 
-  Widget checkedCard(List<String> opc,BuildContext context,Check _check,Function f,ProductViewModel productViewModel){
+  Widget checkedCard(List<String> opc,BuildContext context,Check _check,Function f,{ProductViewModel productViewModel}){
 
 
 
@@ -165,7 +165,10 @@ mixin ComponentsPage{
                   onChanged: (value){
 
                       f(value);
-                      snackBarCustom(context,productViewModel);
+
+                      if(productViewModel!=null) {
+                        snackBarCustom(context,productViewModel);
+                      }
 
                   },
                 )
@@ -199,7 +202,9 @@ mixin ComponentsPage{
                   onChanged: (value){
                     f(value);
 
-                    snackBarCustom(context,productViewModel);
+                    if(productViewModel!=null) {
+                      snackBarCustom(context,productViewModel);
+                    }
 
                   },
                 )
@@ -450,16 +455,14 @@ mixin ComponentsPage{
     String dropdownValue = DateTime.now().year.toString();
 
     showDialog(context: context,
-        barrierColor: Colors.white,
+        barrierColor: Colors.transparent,
         builder: (context){
-
-          return Stack(
+        return Stack(
               children:[
                 Positioned(
-                  top: sizeH*0.05,
+                  top: sizeH*0.09,
                   child: AlertDialog(
                     insetPadding: EdgeInsets.only(left: sizeW*0.05,right:sizeW*0.05 ),
-                    //buttonPadding: EdgeInsets.zero,
                     contentPadding: EdgeInsets.only(bottom: 0),
                     elevation: 2,
                     content: StatefulBuilder(
@@ -597,6 +600,9 @@ mixin ComponentsPage{
                     ),
                     actions: [
                       InkWell(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                        },
                         child: Container(
                           width: sizeW*0.35,
                           height:sizeH*0.07 ,

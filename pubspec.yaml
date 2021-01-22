@@ -33,18 +33,19 @@ dependencies:
   flutter_svg:
   google_fonts: ^1.1.1
   provider: ^4.3.2+4
-  mobx:
-  flutter_mobx:
-  table_calendar:
+  table_calendar: ^2.3.2
   intl: ^0.16.1
+  mobx: ^1.2.1+4
+  flutter_mobx: ^1.1.0+2
+
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mobx_codegen:
-  build_runner:
+  build_runner: ^1.10.13
+  mobx_codegen: ^1.1.2
 
 
 

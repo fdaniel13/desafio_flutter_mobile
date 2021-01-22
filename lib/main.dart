@@ -1,5 +1,5 @@
 
-import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/views/clientOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/view/historicView/historic.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productOptionsView.dart';
@@ -32,9 +32,10 @@ void main() {
           '/itemOrdered':(context)=>ProductView(),
           '/itemOptions':(context)=>ProductOptionsView(),
           '/clientOrdered':(context)=>ClientView(),
+          '/clientOptions': (context)=>ClientOptionsView(),
 
         },
-          home:Historic(),//Ordered(),// LoginView(),
+          home:ClientView(),//LoginView(),//Historic(),//Ordered(),// LoginView(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               unselectedWidgetColor: Color(0xffFF8822),

@@ -68,7 +68,7 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
                 ),
               ),
               onTap: (){
-                //Navigator.of(context).pushReplacementNamed ('/clientOrdered');
+                Navigator.of(context).pushReplacementNamed ('/clientOptions');
 
               },
             )
