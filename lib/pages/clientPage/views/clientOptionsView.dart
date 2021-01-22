@@ -139,8 +139,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                         if(cal.selectedDay==DateTime.now()){
                           print('não selecionado');
                         }
-
-
+                        Navigator.of(context).pushReplacementNamed('/endOrdered');
                       },
                         child: Container(
                           width: sizeW*0.9,

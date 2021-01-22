@@ -1,6 +1,7 @@
 
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
+import 'package:desafio_flutter_mobile/pages/endOrderedPage/views/endOrdered.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/view/historicView/historic.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productView.dart';
@@ -33,6 +34,7 @@ void main() {
           '/itemOptions':(context)=>ProductOptionsView(),
           '/clientOrdered':(context)=>ClientView(),
           '/clientOptions': (context)=>ClientOptionsView(),
+          '/endOrdered':(context)=>EndOrdered()
 
         },
           home:ClientView(),//LoginView(),//Historic(),//Ordered(),// LoginView(),
