@@ -1,4 +1,5 @@
 
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
 import 'package:desafio_flutter_mobile/pages/endOrderedPage/views/endOrdered.dart';
@@ -17,7 +18,8 @@ void main() {
     MultiProvider(
       providers: [
         Provider<HomeStore>(create:(_)=>HomeStore()),
-        Provider<ProductViewModel>(create: (_)=> ProductViewModel())
+        Provider<ProductViewModel>(create: (_)=> ProductViewModel()),
+        Provider<ClientViewModel>(create: (_)=> ClientViewModel())
 
 
       ],

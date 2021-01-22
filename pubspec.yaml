@@ -33,7 +33,7 @@ dependencies:
   flutter_svg:
   google_fonts: ^1.1.1
   provider: ^4.3.2+4
-  table_calendar: ^2.3.2
+  table_calendar:
   intl: ^0.16.1
   mobx: ^1.2.1+4
   flutter_mobx: ^1.1.0+2

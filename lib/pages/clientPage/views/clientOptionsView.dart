@@ -1,7 +1,9 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
@@ -19,14 +21,19 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
 
   @override
   Widget build(BuildContext context) {
+
+    final clientVM = Provider.of<ClientViewModel>(context);
+
     void checkState(value){
       setState(() {
         _check=value;
-        //value==Check.option1?productVM.setOptionId(0):
-        //value==Check.option2?productVM.setOptionId(1):
-        //productVM.setOptionId(-1);
+        value==Check.option1?clientVM.setOptionId(0):
+        value==Check.option2?clientVM.setOptionId(1):
+        clientVM.setOptionId(-1);
       });
     }
+
+
 
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -51,6 +58,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.zero,
                         onPressed: (){
+                          clientVM.resetButton();
                           Navigator.of(context).pushReplacementNamed('/clientOrdered');
 
                         },
@@ -72,7 +80,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                     child:description(context,idText: 1)
                 ),
                 Container(
-                  child:steps(context,nStep: 2),
+                  child:steps(context,nStep: 3),
                 ),
                 Container(
                   child: Column(
@@ -118,55 +126,64 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                                 )
                             ),
                             child: ListTile(
-                              title: Text('Selecione uma data',
-                                style: GoogleFonts.openSans(
-                                    color:  Colors.grey[600]
-                                ),
+                              title: Observer(
+                                builder: (context){
+                                  return Text(clientVM.data,
+                                    style: GoogleFonts.openSans(
+                                        color:  Colors.grey[600]
+                                    ),
+                                  );
+                                },
                               ),
                               leading: Image.asset('images/calendario.png',
                                   color: Colors.grey[600]),
                               trailing: Icon(Icons.keyboard_arrow_right,
                                   color: Color(0xffFF8822)),
                               onTap: (){
-                                calendarDialog(context, cal);
+                                calendarDialog(context, cal,clientVM);
                               },
 
-                            ),
+                            )
                           ),
                         ],
                       ),
-                      InkResponse(onTap: (){
-                        if(cal.selectedDay==DateTime.now()){
-                          print('não selecionado');
-                        }
-                        Navigator.of(context).pushReplacementNamed('/endOrdered');
-                      },
-                        child: Container(
-                          width: sizeW*0.9,
-                          height: sizeH*0.08,
-                          decoration: BoxDecoration(
-                            color:Color.fromRGBO(255,136,34,0.5),
-                            borderRadius: BorderRadius.circular(sizeH*0.05),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'FINALIZAR PEDIDO',
-                                style: GoogleFonts.openSans(
-                                    textStyle: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xffFFFFFF),
-                                        fontSize: sizeH*0.025
-                                    )
+                      Observer(builder: (context){
+                        return InkResponse(
+                          enableFeedback: clientVM.buttonActivated,
 
-                                ),
+                          onTap: (){
+                            if(cal.selectedDay==DateTime.now()){
+                              print('não selecionado');
+                            }
+                            Navigator.of(context).pushReplacementNamed('/endOrdered');
+                          },
+                          child: Container(
+                            width: sizeW*0.9,
+                            height: sizeH*0.08,
+                            decoration: BoxDecoration(
+                              color:clientVM.colorButton,
+                              borderRadius: BorderRadius.circular(sizeH*0.05),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'FINALIZAR PEDIDO',
+                                  style: GoogleFonts.openSans(
+                                      textStyle: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xffFFFFFF),
+                                          fontSize: sizeH*0.025
+                                      )
 
-                              )
-                            ],
+                                  ),
+
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      })
                     ],
                   ))
 

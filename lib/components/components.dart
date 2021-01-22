@@ -449,7 +449,7 @@ mixin ComponentsPage{
     );
   }
 
-  calendarDialog(BuildContext context,CalendarController cal) {
+  calendarDialog(BuildContext context,CalendarController cal,ClientViewModel clientVM) {
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
     String dropdownValue = DateTime.now().year.toString();
@@ -522,77 +522,77 @@ mixin ComponentsPage{
                                   ],
                                 ),
                               ),
+                              TableCalendar(
+                                rowHeight: 30,
+                                calendarController: cal,
+                                builders: CalendarBuilders(
+                                  outsideDayBuilder:(context,date,_){
+                                    return Container(
 
-                              SizedBox(
-                                  width: sizeW*0.9,
-                                  //height: sizeH*0.5,
-                                  child: TableCalendar(
-                                    rowHeight: 30,
-                                    calendarController: cal,
-                                    builders: CalendarBuilders(
-                                      selectedDayBuilder:(context,date,_){
-                                        return Container(
-                                          width: sizeW*0.0005,
-                                          height: sizeH*0.0005,
+                                    );
+                                  },
+                                  outsideWeekendDayBuilder:(context,date,_){
+                                    return Container(
 
-                                          decoration: BoxDecoration(
-                                              color:Color(0xffFF8822),
-                                              borderRadius: BorderRadius.circular(sizeW*0.1)
-                                          ),
-                                          child:Center(child: Text(date.day.toString(),
+                                    );
+                                  }
+                                  ,
+                                  selectedDayBuilder:(context,date,_){
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        color:Color(0xffFF8822),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child:Center(child: Text(date.day.toString(),
+                                        style: GoogleFonts.openSans(),
+                                      )),
+                                    );
+                                  },
+                                  dayBuilder:(context,date,_){
+                                    return Container(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(date.day.toString(),
                                             style: GoogleFonts.openSans(),
-                                          )),
-                                        );
-                                      },
-                                      dayBuilder:(context,date,_){
-                                        return Container(
-                                          width: sizeW*0.0005,
-                                          height: sizeH*0.0005,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text(date.day.toString(),
-                                                style: GoogleFonts.openSans(),
 
-                                              ),
-                                            ],
                                           ),
-                                        );},
-                                      dowWeekdayBuilder: (context,s){
-                                        return Container(
-                                          width: 15,
-                                          height: 25,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text(s,
-                                                style: GoogleFonts.openSans(),
+                                        ],
+                                      ),
+                                    );},
+                                  dowWeekdayBuilder: (context,s){
+                                    return Container(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(s,style: GoogleFonts.openSans(),
 
-                                              ),
-                                            ],
                                           ),
-                                        );
-                                      },
-
-                                    ),
-                                    locale: 'pt-br',
-                                    availableCalendarFormats:{CalendarFormat.month: 'Month'},
-                                    headerStyle: HeaderStyle(
-                                      leftChevronMargin: EdgeInsets.zero,
-                                      rightChevronMargin: EdgeInsets.zero,
-                                      leftChevronPadding: EdgeInsets.zero,
-                                      rightChevronPadding: EdgeInsets.zero,
-                                      leftChevronIcon: Icon(Icons.chevron_left,
-                                        color:Color(0xffFF8822),
+                                        ],
                                       ),
-                                      rightChevronIcon: Icon(Icons.chevron_right,
-                                        color:Color(0xffFF8822),
-                                      ),
-                                      centerHeaderTitle: true,
+                                    );
+                                  },
 
-                                    ),
-                                  )
-                              ),
+                                ),
+
+                                locale: 'pt-br',
+                                availableCalendarFormats:{CalendarFormat.month: 'Month'},
+                                headerStyle: HeaderStyle(
+                                  leftChevronMargin: EdgeInsets.zero,
+                                  rightChevronMargin: EdgeInsets.zero,
+                                  leftChevronPadding: EdgeInsets.zero,
+                                  rightChevronPadding: EdgeInsets.zero,
+                                  leftChevronIcon: Icon(Icons.chevron_left,
+                                    color:Color(0xffFF8822),
+                                  ),
+                                  rightChevronIcon: Icon(Icons.chevron_right,
+                                    color:Color(0xffFF8822),
+                                  ),
+                                  centerHeaderTitle: true,
+
+                                ),
+                              )
+
                             ],
                           ),
                         );
@@ -601,6 +601,7 @@ mixin ComponentsPage{
                     actions: [
                       InkWell(
                         onTap: (){
+                          clientVM.setDataSelect(cal.selectedDay);
                           Navigator.of(context).pop();
                         },
                         child: Container(

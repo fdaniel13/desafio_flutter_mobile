@@ -14,13 +14,12 @@ class ClientView extends StatefulWidget {
 
 class _ClientViewState extends State<ClientView> with ComponentsPage {
 
- ClientViewModel  clientVM = ClientViewModel();
 
 
   @override
   Widget build(BuildContext context) {
 
-    //final client = Provider.of<ClientViewModel>(context);
+    final clientVM = Provider.of<ClientViewModel>(context);
     final homeStore = Provider.of<HomeStore>(context);
 
     double sizeW =MediaQuery.of(context).size.width;

@@ -56,6 +56,8 @@ abstract class ProductViewModelBase with Store {
     opc =_opc;
   }
 
+
+
   @action
   changeObservations(value){
     observations=value;
