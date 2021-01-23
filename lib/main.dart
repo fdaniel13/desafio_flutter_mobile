@@ -9,12 +9,16 @@ import 'package:desafio_flutter_mobile/pages/productPage/productView/productView
 import 'package:desafio_flutter_mobile/pages/loginPage/view/loginView.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'pages/homePage/store/homeStore.dart';
 
 void main() {
-  runApp(
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(
     MultiProvider(
       providers: [
         Provider<HomeStore>(create:(_)=>HomeStore()),
@@ -53,7 +57,7 @@ void main() {
               )
           ),
         )),
-  );
+  ));
 }
 
 
