@@ -15,20 +15,21 @@ class ProductOptionsView extends StatefulWidget {
 class _ProductOptionsViewState extends State<ProductOptionsView> with ComponentsPage{
 
   Check _check;
-
+  void _checkState(value,ProductViewModel productVM){
+    setState(() {
+      _check=value;
+    });
+    value==Check.option1?productVM.setOptionId(0):
+    value==Check.option2?productVM.setOptionId(1):
+    productVM.setOptionId(-1);
+  }
 
 
   @override
   Widget build(BuildContext context) {
     final productVM= Provider.of<ProductViewModel>(context);
-    void checkState(value){
-      setState(() {
-        _check=value;
-        value==Check.option1?productVM.setOptionId(0):
-        value==Check.option2?productVM.setOptionId(1):
-        productVM.setOptionId(-1);
-      });
-    }
+
+
 
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -49,10 +50,14 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                 IconButton(icon:Icon(Icons.remove,
                   color: Colors.grey,
                 ), onPressed: productVM.removeOne),
-                Text('${productVM.quantity}',
-                  style: GoogleFonts.openSans(
-                      color: Colors.black
-                  ),
+                Observer(
+                  builder: (_){
+                    return Text('${productVM.quantity}',
+                      style: GoogleFonts.openSans(
+                          color: Colors.black
+                      ),
+                    );
+                  },
                 ),
                 IconButton(icon:Icon(Icons.add,
                   color: Colors.orange,
@@ -85,10 +90,9 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                 ),
               ),
               onTap: (){
+
                 productVM.cart();
-                productVM.quantityForIt();
-                print(productVM.quantityForItem);
-                print(productVM.cartItems.length);
+
                 Navigator.of(context).pushReplacementNamed ('/itemOrdered');
 
               },
@@ -117,6 +121,7 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.zero,
                             onPressed: (){
+                              productVM.resetQuantity();
                                Navigator.pushReplacementNamed(context,'/itemOrdered');
 
                             },
@@ -169,7 +174,7 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                           ) :Container(height: sizeH*0.35,width: sizeW*0.9,),
                           Builder(
                               builder: (context)=>checkedCard(productVM.product.options,
-                                  context,_check,checkState,productViewModel: productVM)
+                                  context,_check,_checkState,productViewModel: productVM)
                           )
 
 

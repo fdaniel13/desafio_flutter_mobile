@@ -164,7 +164,7 @@ mixin ComponentsPage{
                   groupValue: _check,
                   onChanged: (value){
 
-                      f(value);
+                      f(value,productViewModel);
 
                       if(productViewModel!=null) {
                         snackBarCustom(context,productViewModel);
@@ -200,7 +200,7 @@ mixin ComponentsPage{
                   value: Check.option2,
                   groupValue: _check,
                   onChanged: (value){
-                    f(value);
+                    f(value,productViewModel);
 
                     if(productViewModel!=null) {
                       snackBarCustom(context,productViewModel);
@@ -684,8 +684,8 @@ mixin ComponentsPage{
                           ),
                         ),
                         onTap: (){
+
                           productViewModel.cart();
-                          productViewModel.quantityForIt();
                           Navigator.of(context).pushReplacementNamed ('/itemOrdered');
 
                         },

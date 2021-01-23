@@ -1,4 +1,5 @@
 import 'package:desafio_flutter_mobile/models/product.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
 part 'productViewModel.g.dart';
@@ -20,21 +21,11 @@ abstract class ProductViewModelBase with Store {
   @observable
   String observations='';
 
-  @observable
-  bool completeItem=false;
 
   @observable
   List<int> quantityForItem=[];
 
 
-  @action
-  quantityForIt(){
-
-    if(cartItems.isNotEmpty) {
-      quantityForItem.add(quantity);
-    }
-
-  }
 
   @action
   resetSate(){
@@ -43,7 +34,6 @@ abstract class ProductViewModelBase with Store {
     quantity=1;
     cartItems=[];
     observations='';
-    completeItem=false;
     quantityForItem=[];
   }
 
@@ -71,17 +61,24 @@ abstract class ProductViewModelBase with Store {
 
   @action
   removeOne(){
-    if(quantity!=0) quantity-=1;
+    if(quantity!=1) quantity-=1;
   }
 
-  @action
-  fluxItemCompleted(){
-    completeItem=true;
-  }
+
 
   @action
   cart(){
-    cartItems.add(product);
+    if(!cartItems.contains(product)){
+
+      cartItems.add(product);
+      quantityForItem.add(quantity);
+      quantity=1;
+    }
+  }
+
+  @action
+  resetQuantity(){
+    quantity=1;
   }
 
   @action
@@ -97,7 +94,9 @@ abstract class ProductViewModelBase with Store {
 
     cartItems.forEach((prod) {
 
+
       cost+=prod.price*quantityForItem[index];
+
       index++;
 
     });

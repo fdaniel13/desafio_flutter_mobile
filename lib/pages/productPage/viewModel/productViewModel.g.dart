@@ -92,21 +92,6 @@ mixin _$ProductViewModel on ProductViewModelBase, Store {
     });
   }
 
-  final _$completeItemAtom = Atom(name: 'ProductViewModelBase.completeItem');
-
-  @override
-  bool get completeItem {
-    _$completeItemAtom.reportRead();
-    return super.completeItem;
-  }
-
-  @override
-  set completeItem(bool value) {
-    _$completeItemAtom.reportWrite(value, super.completeItem, () {
-      super.completeItem = value;
-    });
-  }
-
   final _$quantityForItemAtom =
       Atom(name: 'ProductViewModelBase.quantityForItem');
 
@@ -125,17 +110,6 @@ mixin _$ProductViewModel on ProductViewModelBase, Store {
 
   final _$ProductViewModelBaseActionController =
       ActionController(name: 'ProductViewModelBase');
-
-  @override
-  dynamic quantityForIt() {
-    final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
-        name: 'ProductViewModelBase.quantityForIt');
-    try {
-      return super.quantityForIt();
-    } finally {
-      _$ProductViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   dynamic resetSate() {
@@ -204,22 +178,22 @@ mixin _$ProductViewModel on ProductViewModelBase, Store {
   }
 
   @override
-  dynamic fluxItemCompleted() {
+  dynamic cart() {
     final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
-        name: 'ProductViewModelBase.fluxItemCompleted');
+        name: 'ProductViewModelBase.cart');
     try {
-      return super.fluxItemCompleted();
+      return super.cart();
     } finally {
       _$ProductViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic cart() {
+  dynamic resetQuantity() {
     final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
-        name: 'ProductViewModelBase.cart');
+        name: 'ProductViewModelBase.resetQuantity');
     try {
-      return super.cart();
+      return super.resetQuantity();
     } finally {
       _$ProductViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -244,7 +218,6 @@ opc: ${opc},
 quantity: ${quantity},
 cartItems: ${cartItems},
 observations: ${observations},
-completeItem: ${completeItem},
 quantityForItem: ${quantityForItem},
 costTotal: ${costTotal}
     ''';
