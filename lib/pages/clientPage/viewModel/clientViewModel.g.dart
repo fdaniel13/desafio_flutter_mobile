@@ -126,6 +126,17 @@ mixin _$ClientViewModel on ClientViewModelBase, Store {
       ActionController(name: 'ClientViewModelBase');
 
   @override
+  dynamic resetDataCalendar() {
+    final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
+        name: 'ClientViewModelBase.resetDataCalendar');
+    try {
+      return super.resetDataCalendar();
+    } finally {
+      _$ClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic changeDataCalendar(CalendarController cal) {
     final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
         name: 'ClientViewModelBase.changeDataCalendar');

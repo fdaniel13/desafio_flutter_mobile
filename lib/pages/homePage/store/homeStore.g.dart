@@ -54,18 +54,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  dynamic addHistoricSolicitation(
-      DateTime date, List<ProductSolicitation> listP) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.addHistoricSolicitation');
-    try {
-      return super.addHistoricSolicitation(date, listP);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 groupProduct: ${groupProduct},

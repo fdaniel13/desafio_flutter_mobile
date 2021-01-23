@@ -42,9 +42,6 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
     final clientVM = Provider.of<ClientViewModel>(context);
 
 
-
-
-
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
 
@@ -112,100 +109,100 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                   ),
                 ),
                 Container(
-                  height: sizeH*0.32,
+                    height: sizeH*0.32,
 
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:EdgeInsets.only(bottom: sizeH*0.03,top: sizeH*0.03),
-                            child: Text('Em que data o pedido foi realizado?',
-                              style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600
-                              ),),
-                          ),
-                          Container(width: sizeW*0.9,
-                            height:sizeH*0.1 ,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
-                                border: Border.all(
-                                    color: Colors.grey[400]
-                                )
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:EdgeInsets.only(bottom: sizeH*0.03,top: sizeH*0.03),
+                              child: Text('Em que data o pedido foi realizado?',
+                                style: GoogleFonts.openSans(
+                                    fontWeight: FontWeight.w600
+                                ),),
                             ),
-                            child: ListTile(
-                              title: Observer(
-                                builder: (context){
-                                  return Text(clientVM.data,
-                                    style: GoogleFonts.openSans(
-                                        color:  Colors.grey[600]
-                                    ),
-                                  );
-                                },
-                              ),
-                              leading: Image.asset('images/calendario.png',
-                                  color: Colors.grey[600]),
-                              trailing: Icon(Icons.keyboard_arrow_right,
-                                  color: Color(0xffFF8822)),
-                              onTap: (){
-                                clientVM.resetDataCalendar();
-                                calendarDialog(context, cal,clientVM);
-                              },
-
-                            )
-                          ),
-                        ],
-                      ),
-                      Observer(builder: (context){
-                        return InkResponse(
-
-                          onTap: (){
-
-                            if(clientVM.buttonActivated){
-
-                              Navigator.of(context).pushReplacementNamed('/endOrdered');
-                            }
-
-
-                          },
-                          child: Container(
-                            width: sizeW*0.9,
-                            height: sizeH*0.08,
-                            decoration: BoxDecoration(
-                              color:clientVM.colorButton,
-                              borderRadius: BorderRadius.circular(sizeH*0.05),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'FINALIZAR PEDIDO',
-                                  style: GoogleFonts.openSans(
-                                      textStyle: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffFFFFFF),
-                                          fontSize: sizeH*0.025
-                                      )
-
+                            Container(width: sizeW*0.9,
+                                height:sizeH*0.1 ,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    border: Border.all(
+                                        color: Colors.grey[400]
+                                    )
+                                ),
+                                child: ListTile(
+                                  title: Observer(
+                                    builder: (context){
+                                      return Text(clientVM.data,
+                                        style: GoogleFonts.openSans(
+                                            color:  Colors.grey[600]
+                                        ),
+                                      );
+                                    },
                                   ),
+                                  leading: Image.asset('images/calendario.png',
+                                      color: Colors.grey[600]),
+                                  trailing: Icon(Icons.keyboard_arrow_right,
+                                      color: Color(0xffFF8822)),
+                                  onTap: (){
+                                    clientVM.resetDataCalendar();
+                                    calendarDialog(context, cal,clientVM);
+                                  },
 
                                 )
-                              ],
                             ),
-                          ),
-                        );
-                      })
-                    ],
-                  ))
+                          ],
+                        ),
+                        Observer(builder: (context){
+                          return InkResponse(
+
+                            onTap: (){
+
+                              if(clientVM.buttonActivated){
+
+                                Navigator.of(context).pushReplacementNamed('/endOrdered');
+                              }
+
+
+                            },
+                            child: Container(
+                              width: sizeW*0.9,
+                              height: sizeH*0.08,
+                              decoration: BoxDecoration(
+                                color:clientVM.colorButton,
+                                borderRadius: BorderRadius.circular(sizeH*0.05),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'FINALIZAR PEDIDO',
+                                    style: GoogleFonts.openSans(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xffFFFFFF),
+                                            fontSize: sizeH*0.025
+                                        )
+
+                                    ),
+
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        })
+                      ],
+                    ))
 
 
               ],
             ),
           )
-      ),
-    );
+      ))
+    ;
   }
 }
 

@@ -47,7 +47,7 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.zero,
                         onPressed: (){
-
+                          clientVM.resetState();
                           Navigator.of(context).pushReplacementNamed('/itemOrdered');
 
                         },

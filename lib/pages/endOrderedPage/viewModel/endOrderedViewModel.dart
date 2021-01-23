@@ -19,22 +19,38 @@ class EndOrderedViewModel{
     List<Product> _prod = productVM.cartItems;
     List<int> _quantPro =productVM.quantityForItem;
     double _total = productVM.costTotal;
-
     List<String> dateList = date.split("/");
     DateTime dateT= DateTime(int.parse(dateList[2]),int.parse(dateList[1]),int.parse(dateList[0]));
-
     List<ProductSolicitation> listPro=[];
-    _client.forEach((element) {
-      listPro.add(ProductSolicitation(
-          element,_prod,_total,_quantPro
-      ));
 
+    int keyContain = -1;
+    int key=0;
+
+    //Procura se a data ja ta resgistrada na lista
+    //se sim keyContais assume o valor posição ondde ela está
+    homeStore.shopPerDay.forEach((element) {
+
+      if(dateT==element.date) {
+        keyContain=key;
+      }
+       key++;
 
     });
 
-    homeStore.addItem(HistoricSolicitation(dateT,listPro));
-    homeStore.addHistoricSolicitation(dateT, listPro);
+    //cria uma Solicitação por cliente
+    //se a data do pedido ja tiver sido cadastrada add a mesma os novos pedidos
+    //senão add na lista de pedidos por dia
+    _client.forEach((element) {
+      key==-1?
+      listPro.add(ProductSolicitation(
+          element,_prod,_total,_quantPro
+      )):homeStore.shopPerDay[keyContain].productSolicitation.add(ProductSolicitation(
+          element,_prod,_total,_quantPro
+      ));
 
+    });
+
+    if(listPro.isNotEmpty) homeStore.addItem(HistoricSolicitation(dateT,listPro));
 
 
 

@@ -1,4 +1,7 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
+import 'package:desafio_flutter_mobile/models/cliente.dart';
+import 'package:desafio_flutter_mobile/models/product.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -12,6 +15,10 @@ class Historic extends StatefulWidget {
 }
 
 class _HistoricState extends State<Historic> with ComponentsPage{
+
+
+
+
   @override
   Widget build(BuildContext context) {
     final homeStore = Provider.of<HomeStore>(context);
@@ -20,11 +27,6 @@ class _HistoricState extends State<Historic> with ComponentsPage{
     double sizeH = MediaQuery.of(this.context).size.height;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
-        },
-      ),
       body:SingleChildScrollView(
 
         child: Container(

@@ -61,7 +61,6 @@ mixin ComponentsPage{
 
   Widget plusOrder(BuildContext context){
     double sizeW =MediaQuery.of(context).size.width;
-    double sizeH = MediaQuery.of(context).size.height;
 
     return  InkWell(
       onTap: (){
@@ -359,8 +358,7 @@ mixin ComponentsPage{
 
   Widget customListHistoric(HistoricSolicitation historicSolicitation){
 
-    //recebe um map e cria  alista das solicitações desse map de index datetime
-//this._client,this._product,this._date,this._total,this._quantPro
+
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -395,7 +393,7 @@ mixin ComponentsPage{
             ],
           ): Padding(padding: const EdgeInsets.only(bottom:8.0),
               child:cardCustom(context,historicP.client.name,historicP.client.urlPicture,
-                  '${historicP.totalPrice()}',
+                  '${historicP.total}',
                   Colors.white,
                   subText: '${historicP.infoShop}'
               ),);

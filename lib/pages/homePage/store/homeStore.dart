@@ -20,14 +20,6 @@ abstract class HomeStoreBase with Store{
        10,[1,1])])
   ]);
 
-  ObservableMap<DateTime,List<ProductSolicitation>> historicSolicitation =ObservableMap<DateTime,List<ProductSolicitation>>.of({
-    DateTime.utc(2021,1):[ProductSolicitation(Client('fabio','images/bairanMask.png'),
-        [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        10,[1,1]), ProductSolicitation(Client('fabio','images/bairanMask.png'),
-        [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz']),
-          Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        10,[1,1])]
-  });
 
   @observable
   ObservableList<GroupProduct> groupProduct=[
@@ -62,11 +54,6 @@ abstract class HomeStoreBase with Store{
   addItem(HistoricSolicitation historicSolicitation){
 
     shopPerDay.add(historicSolicitation);
-  }
-
-  @action
-  addHistoricSolicitation(DateTime date,List<ProductSolicitation> listP){
-    historicSolicitation.addAll ({date:listP});
   }
 
 
