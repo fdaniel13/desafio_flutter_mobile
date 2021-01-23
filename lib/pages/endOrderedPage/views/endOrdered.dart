@@ -1,7 +1,12 @@
+import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/endOrderedPage/viewModel/endOrderedViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -11,8 +16,18 @@ class EndOrdered extends StatefulWidget {
 }
 
 class _EndOrderedState extends State<EndOrdered> {
+
+  EndOrderedViewModel endOVM = EndOrderedViewModel();
+
+
+
+
   @override
   Widget build(BuildContext context) {
+    final clientVM= Provider.of<ClientViewModel>(context);
+    final productVM =Provider.of<ProductViewModel>(context);
+    final homeStore =Provider.of<HomeStore>(context);
+
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
 
@@ -41,6 +56,12 @@ class _EndOrderedState extends State<EndOrdered> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         InkResponse(onTap: (){
+
+                          endOVM.completeShop(clientVM, productVM, homeStore);
+
+                          productVM.resetSate();
+                          clientVM.resetState();
+
                           Navigator.of(context).pushReplacementNamed('/itemOrdered');
 
                         },
@@ -48,7 +69,7 @@ class _EndOrderedState extends State<EndOrdered> {
                             width: sizeW*0.9,
                             height: sizeH*0.08,
                             decoration: BoxDecoration(
-                              color:Color.fromRGBO(255,136,34,0.5),
+                              color:Color.fromRGBO(255,136,34,1),
                               borderRadius: BorderRadius.circular(sizeH*0.05),
                             ),
                             child: Row(
@@ -71,6 +92,11 @@ class _EndOrderedState extends State<EndOrdered> {
                           ),
                         ),
                         InkResponse(onTap: (){
+
+                          endOVM.completeShop(clientVM, productVM, homeStore);
+
+                          productVM.resetSate();
+                          clientVM.resetState();
 
                           Navigator.of(context).pushReplacementNamed('/historic');
 

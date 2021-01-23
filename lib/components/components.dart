@@ -136,7 +136,7 @@ mixin ComponentsPage{
     );
   }
 
-  Widget checkedCard(List<String> opc,BuildContext context,Check _check,Function f,{ProductViewModel productViewModel}){
+  Widget checkedCard(List<String> opc,BuildContext context,Check _check,Function f,{ProductViewModel productViewModel,ClientViewModel clientVM}){
 
 
 
@@ -164,11 +164,12 @@ mixin ComponentsPage{
                   groupValue: _check,
                   onChanged: (value){
 
-                      f(value,productViewModel);
+
 
                       if(productViewModel!=null) {
                         snackBarCustom(context,productViewModel);
-                      }
+                        f(value,productViewModel);
+                      }else f(value,clientVM);
 
                   },
                 )
@@ -200,11 +201,12 @@ mixin ComponentsPage{
                   value: Check.option2,
                   groupValue: _check,
                   onChanged: (value){
-                    f(value,productViewModel);
+
 
                     if(productViewModel!=null) {
                       snackBarCustom(context,productViewModel);
-                    }
+                      f(value,productViewModel);
+                    }else f(value,clientVM);
 
                   },
                 )

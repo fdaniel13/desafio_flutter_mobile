@@ -16,10 +16,10 @@ abstract class HomeStoreBase with Store{
     ProductSolicitation(Client('fabio','images/bairanMask.png'),
         [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz']),
           Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1)),
+        DateTime.utc(2021,1),0),
     ProductSolicitation(Client('fabio','images/bairanMask.png'),
         [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1)),
+        DateTime.utc(2021,1),0),
   ].asObservable();
 
   @observable

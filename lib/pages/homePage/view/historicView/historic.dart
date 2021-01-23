@@ -20,13 +20,7 @@ class _HistoricState extends State<Historic> with ComponentsPage{
     double sizeH = MediaQuery.of(this.context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xffFAFAFA),
-        toolbarHeight: sizeH*0.07,
-      ),
       body:SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
         child: Container(
             height: 2*sizeH,
             width: sizeW,
@@ -37,6 +31,9 @@ class _HistoricState extends State<Historic> with ComponentsPage{
               children: [
                 Column(
                   children: [
+                    Container(
+                      height: sizeH*0.1,
+                    ),
                     Container(
                       width: sizeW,
                       height: sizeH*0.07,

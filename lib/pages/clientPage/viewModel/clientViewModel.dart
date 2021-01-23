@@ -24,8 +24,7 @@ abstract class ClientViewModelBase with Store{
   @observable
   bool listReactState=false;
 
-  @computed
-  int get lengthClientsSel=>clientsSelected.length;
+
 
 
   @action
@@ -107,10 +106,21 @@ abstract class ClientViewModelBase with Store{
 
 
   @action
-  stepFinish() {if(lengthClientsSel>0) stepComplete=true;}
+  stepFinish() {if(clientsSelected.length>0) stepComplete=true;}
 
   @computed
   get disableCardClient=> stepComplete==true? false : true;
 
+
+  @action
+  resetState(){
+
+    clientsSelected=[];
+    stepComplete=false;
+    opc=-1;
+    data='Selecione uma data';
+    listReactState=false;
+
+  }
 
 }

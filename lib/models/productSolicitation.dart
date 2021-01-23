@@ -9,8 +9,9 @@ class ProductSolicitation{
   List<Product> _product;
   Map<int,Product> _productOrder;
   DateTime _date;
+  double _total;
 
-  ProductSolicitation(this._client,this._product,this._date);
+  ProductSolicitation(this._client,this._product,this._date,this._total);
 
    set client(Client client)=>this._client=client;
    set product(List<Product> product)=>this._product=product;

@@ -19,19 +19,29 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
   Check _check;
   CalendarController cal =CalendarController();
 
+  void checkState(value,ClientViewModel clientVM){
+    setState(() {
+      _check=value;
+
+    });
+    value==Check.option1?clientVM.setOptionId(0):
+    value==Check.option2?clientVM.setOptionId(1):
+    clientVM.setOptionId(-1);
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    cal.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 
     final clientVM = Provider.of<ClientViewModel>(context);
 
-    void checkState(value){
-      setState(() {
-        _check=value;
-        value==Check.option1?clientVM.setOptionId(0):
-        value==Check.option2?clientVM.setOptionId(1):
-        clientVM.setOptionId(-1);
-      });
-    }
+
 
 
 
@@ -96,7 +106,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                                 height:sizeH*0.0025
                             )),
                       ),
-                      checkedCard(['Sim','Não'], context, _check, checkState)
+                      checkedCard(['Sim','Não'], context, _check, checkState,clientVM: clientVM)
 
                     ],
                   ),
@@ -149,13 +159,15 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                       ),
                       Observer(builder: (context){
                         return InkResponse(
-                          enableFeedback: clientVM.buttonActivated,
 
                           onTap: (){
-                            if(cal.selectedDay==DateTime.now()){
-                              print('não selecionado');
+
+                            if(clientVM.buttonActivated){
+
+                              Navigator.of(context).pushReplacementNamed('/endOrdered');
                             }
-                            Navigator.of(context).pushReplacementNamed('/endOrdered');
+
+
                           },
                           child: Container(
                             width: sizeW*0.9,

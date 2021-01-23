@@ -9,13 +9,6 @@ part of 'clientViewModel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClientViewModel on ClientViewModelBase, Store {
-  Computed<int> _$lengthClientsSelComputed;
-
-  @override
-  int get lengthClientsSel => (_$lengthClientsSelComputed ??= Computed<int>(
-          () => super.lengthClientsSel,
-          name: 'ClientViewModelBase.lengthClientsSel'))
-      .value;
   Computed<Color> _$colorButtonComputed;
 
   @override
@@ -195,6 +188,17 @@ mixin _$ClientViewModel on ClientViewModelBase, Store {
   }
 
   @override
+  dynamic resetState() {
+    final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
+        name: 'ClientViewModelBase.resetState');
+    try {
+      return super.resetState();
+    } finally {
+      _$ClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 clientsSelected: ${clientsSelected},
@@ -202,7 +206,6 @@ stepComplete: ${stepComplete},
 opc: ${opc},
 data: ${data},
 listReactState: ${listReactState},
-lengthClientsSel: ${lengthClientsSel},
 colorButton: ${colorButton},
 buttonActivated: ${buttonActivated},
 disableCardClient: ${disableCardClient}
