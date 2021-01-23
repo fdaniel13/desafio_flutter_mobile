@@ -9,20 +9,13 @@ part of 'homeStore.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on HomeStoreBase, Store {
-  final _$historicProductAtom = Atom(name: 'HomeStoreBase.historicProduct');
+  Computed<dynamic> _$totalPriceDayComputed;
 
   @override
-  ObservableList<ProductSolicitation> get historicProduct {
-    _$historicProductAtom.reportRead();
-    return super.historicProduct;
-  }
-
-  @override
-  set historicProduct(ObservableList<ProductSolicitation> value) {
-    _$historicProductAtom.reportWrite(value, super.historicProduct, () {
-      super.historicProduct = value;
-    });
-  }
+  dynamic get totalPriceDay =>
+      (_$totalPriceDayComputed ??= Computed<dynamic>(() => super.totalPriceDay,
+              name: 'HomeStoreBase.totalPriceDay'))
+          .value;
 
   final _$groupProductAtom = Atom(name: 'HomeStoreBase.groupProduct');
 
@@ -69,11 +62,23 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  dynamic addHistoricSolicitation(
+      DateTime date, List<ProductSolicitation> listP) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.addHistoricSolicitation');
+    try {
+      return super.addHistoricSolicitation(date, listP);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-historicProduct: ${historicProduct},
 groupProduct: ${groupProduct},
-clients: ${clients}
+clients: ${clients},
+totalPriceDay: ${totalPriceDay}
     ''';
   }
 }

@@ -20,13 +20,21 @@ class EndOrderedViewModel{
     double _total = productVM.costTotal;
 
     List<String> dateList = date.split("/");
+    DateTime dateT= DateTime(int.parse(dateList[2]),int.parse(dateList[1]),int.parse(dateList[0]));
 
+    List<ProductSolicitation> listPro=[];
     _client.forEach((element) {
       homeStore.addItem(ProductSolicitation(
-        element,_prod,DateTime(int.parse(dateList[2]),int.parse(dateList[1]),int.parse(dateList[0])),_total
+          element,_prod,dateT,_total,_quantPro
+      ));
+      listPro.add(ProductSolicitation(
+          element,_prod,dateT,_total,_quantPro
       ));
 
+
     });
+    homeStore.addHistoricSolicitation(dateT, listPro);
+
 
 
 

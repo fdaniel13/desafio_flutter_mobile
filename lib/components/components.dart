@@ -375,20 +375,23 @@ mixin ComponentsPage{
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
-                child: cardCustom(context,productSolicitation.client.name,productSolicitation.client.urlPicture,'${productSolicitation.product[index].price}',
+                child: cardCustom(context,productSolicitation.client.name,productSolicitation.client.urlPicture,
+                    '${productSolicitation.product[index].price}',
                     Colors.white,
                   subText: 'x${productSolicitation.product[index].name}'
                 ),
               )
             ],
-          ): Padding(padding: const EdgeInsets.only(bottom:8.0),child:cardCustom(context,productSolicitation.product[index].name,productSolicitation.product[index].urlPicture,'${productSolicitation.product[index].price}',Colors.white));
+          ): Padding(padding: const EdgeInsets.only(bottom:8.0),
+              child:cardCustom(context,productSolicitation.product[index].name,
+                  productSolicitation.product[index].urlPicture,'${productSolicitation.product[index].price}',Colors.white));
         });
   }
 
   Widget customListGroupHistoric(List<ProductSolicitation> productSolicitation){
 
     return ListView.separated(
-      physics: NeverScrollableScrollPhysics(),
+      //physics: NeverScrollableScrollPhysics(),
       itemCount:productSolicitation.length ,
       separatorBuilder: (context,index){
         return Divider();
