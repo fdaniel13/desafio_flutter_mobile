@@ -22,16 +22,12 @@ class _HistoricState extends State<Historic> with ComponentsPage{
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          print(homeStore.historicProduct.length);
-          print(homeStore.historicProduct.last.total);
-          print(homeStore.historicProduct.last.client.name);
-          print(homeStore.totalPriceDay);
+
         },
       ),
       body:SingleChildScrollView(
+
         child: Container(
-            height: 1.5*sizeH,
-            width: sizeW,
             padding: EdgeInsets.only(right:sizeW*0.05, left:sizeW*0.05 ),
             color:Color(0xffFAFAFA),
             child: Column(
@@ -59,15 +55,10 @@ class _HistoricState extends State<Historic> with ComponentsPage{
                         ],
                       ),
                     ),
-                    Container(
-                      width: sizeW,
-                      height: sizeH,
-                      padding: EdgeInsets.only(top:sizeH*0.03),
-                      child:Observer(
-                        builder: (_){
-                          return customListGroupHistoric(homeStore.historicProduct);
-                        },
-                      ),
+                    Observer(
+                      builder: (_){
+                        return customListGroupHistoric(homeStore.shopPerDay);
+                      },
                     ),
 
                   ],

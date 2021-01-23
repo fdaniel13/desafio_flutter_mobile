@@ -1,5 +1,6 @@
 import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/groupProduct.dart';
+import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
@@ -259,12 +260,14 @@ mixin ComponentsPage{
           ),
         ),
         subtitle: Text(subText,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: GoogleFonts.openSans(
               color:colorText
           ),
 
         ),
-        trailing: Text(price,
+        trailing: Text('R\$$price'.replaceAll('.',','),
           style: GoogleFonts.openSans(
               color:colorText
           ),
@@ -352,20 +355,25 @@ mixin ComponentsPage{
     );
   }
 
-  Widget customListHistoric(ProductSolicitation productSolicitation){
+  Widget customListHistoric(HistoricSolicitation historicSolicitation){
 
+    //recebe um map e cria  alista das solicitações desse map de index datetime
+//this._client,this._product,this._date,this._total,this._quantPro
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: productSolicitation.product.length,
+        itemCount: historicSolicitation.productSolicitation.length,
         itemBuilder:(context,index){
+
+          var historicP = historicSolicitation.productSolicitation[index];
+
           return index==0?Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
-                child: Text('Em ${productSolicitation.date.day}/${productSolicitation.date.month} você vendeu R\$ '
-                    '${productSolicitation.totalPrice()} ',
+                child: Text('Em ${historicSolicitation.date.day}/${historicSolicitation.date.month} você vendeu R\$ '
+                    '${historicSolicitation.totalPerDay.toString().replaceAll('.',',')} ',
                   style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w600
@@ -375,30 +383,38 @@ mixin ComponentsPage{
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
-                child: cardCustom(context,productSolicitation.client.name,productSolicitation.client.urlPicture,
-                    '${productSolicitation.product[index].price}',
+                child: cardCustom(context,historicP.client.name,historicP.client.urlPicture,
+                    '${historicP.total}',
                     Colors.white,
-                  subText: 'x${productSolicitation.product[index].name}'
+                  subText: '${historicP.quantPro[index]} '
+                      '${historicP.product[index].name}'
+
                 ),
               )
             ],
           ): Padding(padding: const EdgeInsets.only(bottom:8.0),
-              child:cardCustom(context,productSolicitation.product[index].name,
-                  productSolicitation.product[index].urlPicture,'${productSolicitation.product[index].price}',Colors.white));
+              child:cardCustom(context,historicP.client.name,historicP.client.urlPicture,
+                  '${historicP.totalPrice()}',
+                  Colors.white,
+                  subText: 'x'
+              ),);
         });
   }
 
-  Widget customListGroupHistoric(List<ProductSolicitation> productSolicitation){
+  Widget customListGroupHistoric(List<HistoricSolicitation> historicList){
+
 
     return ListView.separated(
-      //physics: NeverScrollableScrollPhysics(),
-      itemCount:productSolicitation.length ,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      reverse: true,
+      itemCount:historicList.length ,
       separatorBuilder: (context,index){
         return Divider();
       },
-      itemBuilder: (context,index){
+      itemBuilder: (context, index){
 
-        return customListHistoric(productSolicitation[index]);
+        return customListHistoric(historicList[index]);
       },
     );
   }

@@ -2,6 +2,7 @@
 
 
 import 'package:desafio_flutter_mobile/models/cliente.dart';
+import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
@@ -24,15 +25,14 @@ class EndOrderedViewModel{
 
     List<ProductSolicitation> listPro=[];
     _client.forEach((element) {
-      homeStore.addItem(ProductSolicitation(
-          element,_prod,dateT,_total,_quantPro
-      ));
       listPro.add(ProductSolicitation(
-          element,_prod,dateT,_total,_quantPro
+          element,_prod,_total,_quantPro
       ));
 
 
     });
+
+    homeStore.addItem(HistoricSolicitation(dateT,listPro));
     homeStore.addHistoricSolicitation(dateT, listPro);
 
 

@@ -1,4 +1,5 @@
 
+import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/groupProduct.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
@@ -13,23 +14,19 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 abstract class HomeStoreBase with Store{
 
 
-  ObservableList<ProductSolicitation> historicProduct= ObservableList <ProductSolicitation>.of([
-    ProductSolicitation(Client('fabio','images/bairanMask.png'),
-        [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz']),
-          Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1),10,[1,1]),
-    ProductSolicitation(Client('fabio','images/bairanMask.png'),
+  ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
+    HistoricSolicitation( DateTime.utc(2021,1),[ProductSolicitation(Client('fabio','images/bairanMask.png'),
         [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1),10,[1,1]),
+       10,[1,1])])
   ]);
 
   ObservableMap<DateTime,List<ProductSolicitation>> historicSolicitation =ObservableMap<DateTime,List<ProductSolicitation>>.of({
     DateTime.utc(2021,1):[ProductSolicitation(Client('fabio','images/bairanMask.png'),
         [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1),10,[1,1]), ProductSolicitation(Client('fabio','images/bairanMask.png'),
+        10,[1,1]), ProductSolicitation(Client('fabio','images/bairanMask.png'),
         [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz']),
           Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-        DateTime.utc(2021,1),10,[1,1])]
+        10,[1,1])]
   });
 
   @observable
@@ -62,9 +59,9 @@ abstract class HomeStoreBase with Store{
 
 
   @action
-  addItem(ProductSolicitation productSolicitation){
+  addItem(HistoricSolicitation historicSolicitation){
 
-    historicProduct.add(productSolicitation);
+    shopPerDay.add(historicSolicitation);
   }
 
   @action
@@ -72,22 +69,7 @@ abstract class HomeStoreBase with Store{
     historicSolicitation.addAll ({date:listP});
   }
 
-  @computed
-  get totalPriceDay{
-    double total=0;
-    DateTime dateNow = historicProduct[0].date;
-    Map<DateTime,double> totalPerDay={};
-    
-    historicProduct.forEach((element) {
-      if(element.date==dateNow){
-        totalPerDay.addAll({dateNow:element.total});
-      }
-          
-    });
 
-    return totalPerDay;
-
-  }
 
 
 

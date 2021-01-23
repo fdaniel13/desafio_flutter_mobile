@@ -9,14 +9,6 @@ part of 'homeStore.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on HomeStoreBase, Store {
-  Computed<dynamic> _$totalPriceDayComputed;
-
-  @override
-  dynamic get totalPriceDay =>
-      (_$totalPriceDayComputed ??= Computed<dynamic>(() => super.totalPriceDay,
-              name: 'HomeStoreBase.totalPriceDay'))
-          .value;
-
   final _$groupProductAtom = Atom(name: 'HomeStoreBase.groupProduct');
 
   @override
@@ -51,11 +43,11 @@ mixin _$HomeStore on HomeStoreBase, Store {
       ActionController(name: 'HomeStoreBase');
 
   @override
-  dynamic addItem(ProductSolicitation productSolicitation) {
+  dynamic addItem(HistoricSolicitation historicSolicitation) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.addItem');
     try {
-      return super.addItem(productSolicitation);
+      return super.addItem(historicSolicitation);
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -77,8 +69,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   String toString() {
     return '''
 groupProduct: ${groupProduct},
-clients: ${clients},
-totalPriceDay: ${totalPriceDay}
+clients: ${clients}
     ''';
   }
 }
