@@ -41,10 +41,11 @@ class EndOrderedViewModel{
     //se a data do pedido ja tiver sido cadastrada add a mesma os novos pedidos
     //senão add na lista de pedidos por dia
     _client.forEach((element) {
-      key==-1?
+      keyContain==-1?
       listPro.add(ProductSolicitation(
           element,_prod,_total,_quantPro
-      )):homeStore.shopPerDay[keyContain].productSolicitation.add(ProductSolicitation(
+      )):
+      homeStore.shopPerDay[keyContain].productSolicitation.add(ProductSolicitation(
           element,_prod,_total,_quantPro
       ));
 

@@ -59,7 +59,7 @@ class _HistoricState extends State<Historic> with ComponentsPage{
                     ),
                     Observer(
                       builder: (_){
-                        return customListGroupHistoric(homeStore.shopPerDay);
+                        return customListGroupHistoric(homeStore.orderShopPerDayList);
                       },
                     ),
 

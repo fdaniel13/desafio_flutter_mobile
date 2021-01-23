@@ -57,7 +57,8 @@ abstract class HomeStoreBase with Store{
   }
 
 
-
+  @computed
+  get orderShopPerDayList=> shopPerDay..sort( (a,b)=>a.date.compareTo(b.date));
 
 
 }
