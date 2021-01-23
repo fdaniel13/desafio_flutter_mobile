@@ -27,53 +27,7 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
 
     return Scaffold(
 
-      bottomSheet: clientVM.stepComplete?Container(
-        height: MediaQuery.of(context).size.height*0.08,
-        width: MediaQuery.of(context).size.width,
-        color: Color(0xffFF8822),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text('Total : R\$ ${clientVM.clientsSelected.length} selecionados',
-                    style: GoogleFonts.openSans(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),
-                  )
-                ],
-              ),
-            ),
-            InkWell(
-              child: Container(
-                height: MediaQuery.of(context).size.height*0.08,
-                width: MediaQuery.of(context).size.width*0.3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text('Avançar',
-                      style: GoogleFonts.openSans(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white
-                      ),
-                    ),
-                    Icon(Icons.keyboard_arrow_right,
-                        color: Colors.white
-                    ),
-                  ],
-                ),
-              ),
-              onTap: (){
-                Navigator.of(context).pushReplacementNamed ('/clientOptions');
-
-              },
-            )
-          ],
-        ),
-      ):Container(width: 0,height: 0),
+      bottomSheet: _bottomSheetCustom(sizeW,sizeH,clientVM),
       body:SingleChildScrollView(
           child: Container(
             height:sizeH,
@@ -124,61 +78,12 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
                   ),
                 ),
                 Observer(builder: (_){
-                  return  Container(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: homeStore.clients.length,
-                        itemBuilder:(context,index){
-                          return index==0?Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom:8.0),
-                                child: Text('Meus clientes',
-                                  style: GoogleFonts.openSans(
-                                      textStyle: TextStyle(
-                                          fontWeight: FontWeight.w600
-                                      )
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom:8.0),
-                                child: InkWell(
-                                  onTap: (){
-                                    clientVM.clickLogic(homeStore.clients[index]);
-
-
-
-                                  },
-                                  child:cardCustom(context,
-                                      homeStore.clients[index].name,homeStore.clients[index].urlPicture,
-                                      '',
-                                      clientVM.searchClient (homeStore.clients[index])?Color(0xffFF8822):Colors.white,
-                                      colorText:  clientVM.searchClient (homeStore.clients[index])?Colors.white:Colors.black
-                                  ),
-                                ),
-                              )
-                            ],
-                          ): Padding(
-                            padding: const EdgeInsets.only(bottom:8.0),
-                            child: InkWell(
-                              onTap: (){
-
-                                clientVM.clickLogic(homeStore.clients[index]);
-
-
-                              },
-                              child:cardCustom(context,
-                                  homeStore.clients[index].name,homeStore.clients[index].urlPicture,
-                                  '',
-                                  clientVM.searchClient (homeStore.clients[index])?Color(0xffFF8822):Colors.white,
-                                  colorText: clientVM.searchClient (homeStore.clients[index])?Colors.white:Colors.black
-                              ),
-                            ),
-                          );
-                        }),
+                  return clientVM.listReactState?
+                  Container(
+                    child: customListClients(homeStore.clients,clientVM),
+                  ):
+                  Container(
+                    child: customListClients(homeStore.clients,clientVM),
                   );
                 }),
                 Align(
@@ -198,5 +103,63 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
           )
       ),
     );
+
+
   }
+
+  Widget _bottomSheetCustom(double sizeW, double sizeH,ClientViewModel clientVM){
+
+    return Observer(builder: (_){
+      return clientVM.stepComplete?Container(
+        height: MediaQuery.of(context).size.height*0.08,
+        width: MediaQuery.of(context).size.width,
+        color: Color(0xffFF8822),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Observer(
+                builder: (_){
+                  return Text('Total : R\$ ${clientVM.lengthClientsSel} selecionados',
+                    style: GoogleFonts.openSans(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600
+                    ),
+                  );
+                }
+              )
+            ),
+            InkWell(
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.08,
+                width: MediaQuery.of(context).size.width*0.3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Avançar',
+                      style: GoogleFonts.openSans(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white
+                      ),
+                    ),
+                    Icon(Icons.keyboard_arrow_right,
+                        color: Colors.white
+                    ),
+                  ],
+                ),
+              ),
+              onTap: (){
+                Navigator.of(context).pushReplacementNamed ('/clientOptions');
+
+              },
+            )
+          ],
+        ),
+      ):Container(width: 0,height: 0);
+    });
+  }
+
+
+
 }

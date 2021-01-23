@@ -14,13 +14,18 @@ abstract class ClientViewModelBase with Store{
   @observable
   bool stepComplete=false;
 
+
   @observable
   int opc=-1;
 
   @observable
   String data='Selecione uma data';
 
+  @observable
+  bool listReactState=false;
 
+  @computed
+  int get lengthClientsSel=>clientsSelected.length;
 
 
   @action
@@ -75,19 +80,37 @@ abstract class ClientViewModelBase with Store{
   }
 
 
-
   @action
   clickLogic(Client clientS){
-    clientsSelected.contains(clientS)?clientsSelected.remove(clientS):clientsSelected.add(clientS);
+    if(clientsSelected.contains(clientS)){
+      clientsSelected.remove(clientS);
+
+    }
+    else{
+      clientsSelected.add(clientS);
+    }
+
+    listReactState=true;
+
+  }
+
+
+  @action
+  Color cardClientColor(Client _client){
+    return clientsSelected.contains (_client)?Color(0xffFF8822):Colors.white;
   }
 
   @action
-  bool searchClient(Client clientS){
-    return clientsSelected.contains(clientS);
+  Color textCardColor(Client _client){
+    return clientsSelected.contains (_client)?Colors.white:Colors.black;
   }
 
+
   @action
-  stepFinish() {if(clientsSelected.length>0) stepComplete=true;}
+  stepFinish() {if(lengthClientsSel>0) stepComplete=true;}
+
+  @computed
+  get disableCardClient=> stepComplete==true? false : true;
 
 
 }

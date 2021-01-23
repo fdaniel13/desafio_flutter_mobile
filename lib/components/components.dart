@@ -725,18 +725,13 @@ mixin ComponentsPage{
                Padding(
                  padding: const EdgeInsets.only(bottom:8.0),
                  child: InkWell(
-                   onTap: (){
-                     clientVM.clickLogic(client[index]);
-
-
-
-                   },
+                     onTap:  (){
+                       if(clientVM.disableCardClient) clientVM.clickLogic(client[index]);
+                     },
                    child:cardCustom(context,
-                       client[index].name,client[index].urlPicture,
-                       '',
-                       clientVM.searchClient (client[index])?Color(0xffFF8822):Colors.white,
-                       colorText:  clientVM.searchClient (client[index])?Colors.white:Colors.black
-                   ),
+                       client[index].name,client[index].urlPicture, '',
+                       clientVM.cardClientColor (client[index]),
+                       colorText: clientVM.textCardColor(client[index]))
                  ),
                )
              ],
@@ -744,18 +739,12 @@ mixin ComponentsPage{
              padding: const EdgeInsets.only(bottom:8.0),
              child: InkWell(
                onTap: (){
-
-
-                 clientVM.clickLogic(client[index]);
-
-
+                 if(clientVM.disableCardClient) clientVM.clickLogic(client[index]);
                },
                child:cardCustom(context,
-                   client[index].name,client[index].urlPicture,
-                   '',
-                   clientVM.searchClient (client[index])?Color(0xffFF8822):Colors.white,
-                   colorText: clientVM.searchClient (client[index])?Colors.white:Colors.black
-               ),
+                   client[index].name,client[index].urlPicture, '',
+               clientVM.cardClientColor(client[index]),
+               colorText: clientVM.textCardColor(client[index]))
              ),
            );
          });
