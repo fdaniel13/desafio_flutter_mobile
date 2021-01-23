@@ -35,6 +35,16 @@ class ProductSolicitation{
 
   }
 
+  String get infoShop{
+    String info='';
+    int index=0;
+    product.forEach((element) {
+      info+='${quantPro[index]}x ${element.name}';
+    });
+
+    return info;
+  }
+
 
 
 }

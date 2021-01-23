@@ -1,6 +1,7 @@
 import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 part 'clientViewModel.g.dart';
 
@@ -24,7 +25,30 @@ abstract class ClientViewModelBase with Store{
   @observable
   bool listReactState=false;
 
+  @observable
+  String dataCalendar='';
 
+  List<String> weekday=[
+    'Segunda-feira', 'Terça-feira', 'Quarta-feira',
+    'Quinta-feira', 'Sexta-feira', 'Sábado',
+    'Domingo',
+  ];
+  List<String> month =[
+    'janeiro', 'fevereiro', 'março',
+    'abril', 'maio', 'junho', 'julho',
+    'agosto', 'setembro', 'outubro',
+    'novembro', 'dezembro'
+  ];
+
+  @action
+  resetDataCalendar(){
+    dataCalendar='';
+  }
+  @action
+  changeDataCalendar(CalendarController cal){
+    dataCalendar = weekday[cal.selectedDay.weekday-1]+
+        ', ${cal.selectedDay.day} de '+month[cal.selectedDay.month-1];
+  }
 
 
   @action

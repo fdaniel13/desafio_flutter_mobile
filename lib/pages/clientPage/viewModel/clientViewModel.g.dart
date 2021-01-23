@@ -107,8 +107,34 @@ mixin _$ClientViewModel on ClientViewModelBase, Store {
     });
   }
 
+  final _$dataCalendarAtom = Atom(name: 'ClientViewModelBase.dataCalendar');
+
+  @override
+  String get dataCalendar {
+    _$dataCalendarAtom.reportRead();
+    return super.dataCalendar;
+  }
+
+  @override
+  set dataCalendar(String value) {
+    _$dataCalendarAtom.reportWrite(value, super.dataCalendar, () {
+      super.dataCalendar = value;
+    });
+  }
+
   final _$ClientViewModelBaseActionController =
       ActionController(name: 'ClientViewModelBase');
+
+  @override
+  dynamic changeDataCalendar(CalendarController cal) {
+    final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
+        name: 'ClientViewModelBase.changeDataCalendar');
+    try {
+      return super.changeDataCalendar(cal);
+    } finally {
+      _$ClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setOptionId(int _opc) {
@@ -206,6 +232,7 @@ stepComplete: ${stepComplete},
 opc: ${opc},
 data: ${data},
 listReactState: ${listReactState},
+dataCalendar: ${dataCalendar},
 colorButton: ${colorButton},
 buttonActivated: ${buttonActivated},
 disableCardClient: ${disableCardClient}

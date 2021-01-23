@@ -121,7 +121,7 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
               padding: const EdgeInsets.all(8.0),
               child: Observer(
                 builder: (_){
-                  return Text('Total : R\$ ${clientVM.clientsSelected.length} selecionados',
+                  return Text('${clientVM.clientsSelected.length} clientes selecionados',
                     style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontWeight: FontWeight.w600

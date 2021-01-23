@@ -2,14 +2,15 @@ import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/groupProduct.dart';
 import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
-import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiver/strings.dart';
 
 
 enum Check{
@@ -267,7 +268,8 @@ mixin ComponentsPage{
           ),
 
         ),
-        trailing: Text('R\$$price'.replaceAll('.',','),
+        trailing: Text(
+            price.isNotEmpty?'R\$$price'.replaceAll('.',','):'',
           style: GoogleFonts.openSans(
               color:colorText
           ),
@@ -386,8 +388,7 @@ mixin ComponentsPage{
                 child: cardCustom(context,historicP.client.name,historicP.client.urlPicture,
                     '${historicP.total}',
                     Colors.white,
-                  subText: '${historicP.quantPro[index]} '
-                      '${historicP.product[index].name}'
+                  subText: '${historicP.infoShop}'
 
                 ),
               )
@@ -396,7 +397,7 @@ mixin ComponentsPage{
               child:cardCustom(context,historicP.client.name,historicP.client.urlPicture,
                   '${historicP.totalPrice()}',
                   Colors.white,
-                  subText: 'x'
+                  subText: '${historicP.infoShop}'
               ),);
         });
   }
@@ -419,9 +420,20 @@ mixin ComponentsPage{
     );
   }
 
+
+
+
   Widget steps(BuildContext context,{int nStep=1}){
+
+    List<String> textTitle=[
+      'O que você está vendendo?',
+      'Para quem você está vendendo?',
+      'Finalizar pedido'
+
+    ];
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
+
     return  Padding(
       padding:EdgeInsets.only(bottom: sizeH*0.03),
       child: Column(
@@ -433,7 +445,7 @@ mixin ComponentsPage{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'O que você está vendendo?',
+                  textTitle[nStep-1],
                   style: GoogleFonts.openSans(
                       fontWeight: FontWeight.w600
                   ),
@@ -475,6 +487,7 @@ mixin ComponentsPage{
     double sizeH = MediaQuery.of(context).size.height;
     String dropdownValue = DateTime.now().year.toString();
 
+
     showDialog(context: context,
         barrierColor: Colors.transparent,
         builder: (context){
@@ -494,17 +507,19 @@ mixin ComponentsPage{
                           child: Column(
                             children: [
                               SizedBox(
-                                width: sizeW*0.9,
+                                width: sizeW*0.86,
                                 height: sizeH*0.11,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(cal.selectedDay.toString(),
-                                      style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: sizeH*0.02
-                                      ),
-                                    ),
+                                    Observer(builder: (context){
+                                      return Text(clientVM.dataCalendar,
+                                        style: GoogleFonts.openSans(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: sizeH*0.02
+                                        ),
+                                      );
+                                    }),
                                     DropdownButton(
                                         value:dropdownValue,
                                         iconEnabledColor: Color(0xffFF8822),
@@ -537,13 +552,14 @@ mixin ComponentsPage{
                                               }
                                           );
 
-
-
                                         }),
                                   ],
                                 ),
                               ),
                               TableCalendar(
+                              onDaySelected: (date,list1,list2){
+                                clientVM.changeDataCalendar(cal);
+                              },
                                 rowHeight: 30,
                                 calendarController: cal,
                                 builders: CalendarBuilders(
@@ -559,7 +575,7 @@ mixin ComponentsPage{
                                   }
                                   ,
                                   selectedDayBuilder:(context,date,_){
-                                    return Container(
+                                    return  Container(
                                       decoration: BoxDecoration(
                                         color:Color(0xffFF8822),
                                         shape: BoxShape.circle,
@@ -581,12 +597,14 @@ mixin ComponentsPage{
                                         ],
                                       ),
                                     );},
-                                  dowWeekdayBuilder: (context,s){
+                                  dowWeekdayBuilder: (context,dayW){
+                                    Characters  dayLetter= dayW.characters;
+                                    dayW=dayW.replaceFirst (dayLetter.first, dayLetter.first.toUpperCase());
                                     return Container(
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          Text(s,style: GoogleFonts.openSans(),
+                                          Text(dayW,style: GoogleFonts.openSans(),
 
                                           ),
                                         ],
@@ -595,7 +613,6 @@ mixin ComponentsPage{
                                   },
 
                                 ),
-
                                 locale: 'pt-br',
                                 availableCalendarFormats:{CalendarFormat.month: 'Month'},
                                 headerStyle: HeaderStyle(
@@ -610,6 +627,13 @@ mixin ComponentsPage{
                                     color:Color(0xffFF8822),
                                   ),
                                   centerHeaderTitle: true,
+                                  titleTextBuilder: (date, locale){
+                                    String month =DateFormat.MMMM(locale).format(date);
+                                    Characters  dayLetter= month.characters;
+                                    month=month.replaceFirst (dayLetter.first, dayLetter.first.toUpperCase());
+                                  return month;
+
+                                  }
 
                                 ),
                               )

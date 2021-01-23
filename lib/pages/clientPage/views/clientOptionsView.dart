@@ -87,7 +87,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                 ),
                 Container(
                     padding: EdgeInsets.only(top: sizeH*0.03,bottom: sizeH*0.01),
-                    child:description(context,idText: 1)
+                    child:description(context,idText: 2)
                 ),
                 Container(
                   child:steps(context,nStep: 3),
@@ -150,6 +150,7 @@ class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsP
                               trailing: Icon(Icons.keyboard_arrow_right,
                                   color: Color(0xffFF8822)),
                               onTap: (){
+                                clientVM.resetDataCalendar();
                                 calendarDialog(context, cal,clientVM);
                               },
 
