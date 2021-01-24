@@ -13,6 +13,17 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 
 abstract class HomeStoreBase with Store{
 
+  @observable
+  String searchValue;
+
+
+  ObservableList<HistoricSolicitation> listNameClient=ObservableList<HistoricSolicitation>.of([]);
+
+  @observable
+  String searchItems;
+
+
+  ObservableList<GroupProduct> listNameItem=ObservableList<GroupProduct>.of([]);
 
   ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
     HistoricSolicitation( DateTime.utc(2021,1),[ProductSolicitation(Client('fabio','images/bairanMask.png'),
@@ -60,6 +71,85 @@ abstract class HomeStoreBase with Store{
   @computed
   get orderShopPerDayList=> shopPerDay..sort( (a,b)=>a.date.compareTo(b.date));
 
+  @action
+  changeSearchValue(String value){
+    searchValue=value;
+    shopPerDaySearch();
+  }
+
+
+   @action
+   shopPerDaySearch(){
+
+    List<ProductSolicitation> prod=[];
+    int times;
+    listNameClient.clear();
+
+    if(searchValue.isNotEmpty) {
+
+      String _searchValue=searchValue.trim().toUpperCase();
+      shopPerDay.forEach((element) {
+
+       times=element.productSolicitation.length;
+
+       for(int i=0;i<times;i++){
+         String name=element.productSolicitation[i].client.name.trim().toUpperCase();
+
+         if(name.startsWith(_searchValue)){
+           prod.add(element.productSolicitation[i]);
+         }
+       }
+         if(prod.isNotEmpty){
+
+           listNameClient.add(HistoricSolicitation(element.date,prod));
+           prod=[];
+         }
+      });
+
+    }
+
+
+  }
+
+
+
+  @action
+  changeSearchItem(String value){
+    searchItems=value;
+    shopItemSearch();
+  }
+
+  @action
+  shopItemSearch(){
+
+    List<Product> group=[];
+    int times;
+
+    listNameItem.clear();
+
+    if(searchItems.isNotEmpty) {
+
+      String _searchValue=searchItems.trim().toUpperCase();
+      groupProduct.forEach((element) {
+
+        times=element.product.length;
+
+        for(int i=0;i<times;i++){
+          String name=element.product[i].name.trim().toUpperCase();
+
+          if(name.startsWith(_searchValue)){
+            group.add(element.product[i]);
+          }
+        }
+        if(group.isNotEmpty){
+
+          listNameItem.add(GroupProduct(element.name,group));
+          group=[];
+        }
+      });
+    }
+
+  }
 
 }
 

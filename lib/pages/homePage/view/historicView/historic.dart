@@ -1,6 +1,8 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
 import 'package:desafio_flutter_mobile/models/cliente.dart';
+import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
+import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:flutter/material.dart';
@@ -52,14 +54,18 @@ class _HistoricState extends State<Historic> with ComponentsPage{
                     Container(
                       child:Column(
                         children: [
-                          searchForm(context)
+                          searchForm(context,homeStore,1),
+
 
                         ],
                       ),
                     ),
                     Observer(
                       builder: (_){
-                        return customListGroupHistoric(homeStore.orderShopPerDayList);
+                        return homeStore.searchValue.isEmpty?
+                        customListGroupHistoric(homeStore.orderShopPerDayList)
+                            : customListGroupHistoric(homeStore.listNameClient);
+
                       },
                     ),
 

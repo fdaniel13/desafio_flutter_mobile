@@ -3,6 +3,7 @@ import 'package:desafio_flutter_mobile/models/groupProduct.dart';
 import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -108,14 +109,32 @@ mixin ComponentsPage{
     );
   }
 
-  Widget searchForm(BuildContext context){
+  Widget searchForm(BuildContext context,HomeStore homeStore,int pag ){
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
 
-    return TextFormField(
-      onChanged: (val){
+    String init='';
+    Function _onChanged;
 
-      },
+    switch(pag){
+      case 1:
+        init=homeStore.searchValue;
+        _onChanged=homeStore.changeSearchValue;
+        break;
+      case 2:
+        init=homeStore.searchItems;
+        _onChanged=homeStore.changeSearchItem;
+        break;
+      case 3:
+        init='';
+        _onChanged=(value){};
+        break;
+
+    }
+
+    return TextFormField(
+      initialValue:init,
+      onChanged:_onChanged,
       cursorColor: Color(0xffFF8822),
       decoration: InputDecoration(
         hintText:'Digite a sua busca aqui',
@@ -344,6 +363,7 @@ mixin ComponentsPage{
 
 
     return ListView.separated(
+      shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount:groupProductList.length ,
       separatorBuilder: (context,index){

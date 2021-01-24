@@ -72,7 +72,7 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
                   child:Column(
                     children: [
                       steps(context,nStep: 2),
-                      searchForm(context)
+                      searchForm(context,homeStore,3)
 
                     ],
                   ),

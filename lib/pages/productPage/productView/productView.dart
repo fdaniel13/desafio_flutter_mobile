@@ -70,6 +70,7 @@ class _ProductViewState extends State<ProductView> with ComponentsPage{
                 ),
               ),
               onTap: (){
+                productVM.resetSate();
                 Navigator.of(context).pushReplacementNamed ('/clientOrdered');
 
               },
@@ -81,8 +82,6 @@ class _ProductViewState extends State<ProductView> with ComponentsPage{
         child: Observer(
           builder: (_){
             return Container(
-              height:1.55*sizeH,
-              width: sizeW,
               padding: EdgeInsets.only(right:sizeW*0.05, left:sizeW*0.05 ),
               color:Color(0xffFAFAFA),
               child: Column(
@@ -123,18 +122,14 @@ class _ProductViewState extends State<ProductView> with ComponentsPage{
                     child:Column(
                       children: [
                         steps(context),
-                        searchForm(context)
+                        searchForm(context,homeStore,2)
 
                       ],
                     ),
                   ),
-                  Expanded(
-                    child:Container(
-
-                      padding: EdgeInsets.only(top:sizeH*0.03),
-                      child:customListGroupProduct (homeStore.groupProduct,productVM:productVM),
-                    ),
-                  ),
+                  homeStore.searchItems.isEmpty?
+                  customListGroupProduct (homeStore.groupProduct,productVM:productVM):
+                  customListGroupProduct (homeStore.listNameItem,productVM:productVM),
                 ],
               ),
             );
