@@ -47,6 +47,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$searchClientAtom = Atom(name: 'HomeStoreBase.searchClient');
+
+  @override
+  String get searchClient {
+    _$searchClientAtom.reportRead();
+    return super.searchClient;
+  }
+
+  @override
+  set searchClient(String value) {
+    _$searchClientAtom.reportWrite(value, super.searchClient, () {
+      super.searchClient = value;
+    });
+  }
+
   final _$groupProductAtom = Atom(name: 'HomeStoreBase.groupProduct');
 
   @override
@@ -136,10 +151,33 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  dynamic changeSearchClient(String value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.changeSearchClient');
+    try {
+      return super.changeSearchClient(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic shopClientSearch() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.shopClientSearch');
+    try {
+      return super.shopClientSearch();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 searchValue: ${searchValue},
 searchItems: ${searchItems},
+searchClient: ${searchClient},
 groupProduct: ${groupProduct},
 clients: ${clients},
 orderShopPerDayList: ${orderShopPerDayList}

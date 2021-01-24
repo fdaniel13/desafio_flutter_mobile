@@ -14,13 +14,18 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 abstract class HomeStoreBase with Store{
 
   @observable
-  String searchValue;
+  String searchValue='';
 
 
   ObservableList<HistoricSolicitation> listNameClient=ObservableList<HistoricSolicitation>.of([]);
 
   @observable
-  String searchItems;
+  String searchItems='';
+
+  ObservableList<Client>  listSearchClient=ObservableList<Client> .of([]);
+
+  @observable
+  String searchClient='';
 
 
   ObservableList<GroupProduct> listNameItem=ObservableList<GroupProduct>.of([]);
@@ -150,6 +155,38 @@ abstract class HomeStoreBase with Store{
     }
 
   }
+
+  @action
+  changeSearchClient(String value){
+    searchClient=value;
+    shopClientSearch();
+  }
+
+  @action
+  shopClientSearch(){
+
+
+    listSearchClient.clear();
+
+    if(searchClient.isNotEmpty) {
+      print(listSearchClient);
+      String _searchValue=searchClient.trim().toUpperCase();
+
+      clients.forEach((element) {
+
+        String name=element.name.trim().toUpperCase();
+        print(name);
+          if(name.startsWith(_searchValue)){
+
+            listSearchClient.add(element);
+          }
+
+      });
+    }
+
+  }
+
+
 
 }
 

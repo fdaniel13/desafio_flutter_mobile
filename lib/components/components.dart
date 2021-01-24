@@ -126,8 +126,8 @@ mixin ComponentsPage{
         _onChanged=homeStore.changeSearchItem;
         break;
       case 3:
-        init='';
-        _onChanged=(value){};
+        init=homeStore.searchClient;
+        _onChanged=homeStore.changeSearchClient;
         break;
 
     }
