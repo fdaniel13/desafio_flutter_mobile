@@ -1,7 +1,7 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/components/componentsClient.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

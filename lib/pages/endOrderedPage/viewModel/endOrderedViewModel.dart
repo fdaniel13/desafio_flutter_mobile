@@ -1,12 +1,9 @@
-
-
-
 import 'package:desafio_flutter_mobile/models/cliente.dart';
 import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 
 class EndOrderedViewModel{

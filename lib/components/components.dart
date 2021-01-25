@@ -1,17 +1,11 @@
-import 'package:desafio_flutter_mobile/models/cliente.dart';
-import 'package:desafio_flutter_mobile/models/groupProduct.dart';
-import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
-import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quiver/strings.dart';
+
 
 
 enum Check{

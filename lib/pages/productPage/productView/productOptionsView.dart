@@ -1,5 +1,4 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
-import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/components/componentsProduct.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';

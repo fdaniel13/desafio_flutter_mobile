@@ -3,7 +3,8 @@ import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewMode
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
 import 'package:desafio_flutter_mobile/pages/endOrderedPage/views/endOrdered.dart';
-import 'package:desafio_flutter_mobile/pages/homePage/view/historicView/historic.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/views/historic.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productView.dart';
 import 'package:desafio_flutter_mobile/pages/loginPage/view/loginView.dart';
@@ -12,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'pages/homePage/store/homeStore.dart';
 
 void main() {
 
