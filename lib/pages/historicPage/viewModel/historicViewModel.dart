@@ -22,7 +22,7 @@ abstract class HistoricViewModelBase with Store{
 
 
   ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
-    HistoricSolicitation( DateTime.utc(2021,10,23),[
+    HistoricSolicitation( DateTime.utc(2020,10,23),[
       ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
           [Product('Cuscuz com calabresa, 1x s...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
           5.5,[1,1]),
@@ -33,7 +33,7 @@ abstract class HistoricViewModelBase with Store{
           [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
           5.50,[2,1])
     ]),
-    HistoricSolicitation( DateTime.utc(2021,10,22),[ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
+    HistoricSolicitation( DateTime.utc(2020,10,22),[ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
         [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
         5.50,[2,1])])
   ]);
