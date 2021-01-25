@@ -1,5 +1,6 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/productPage/components/componentsProduct.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -14,7 +15,7 @@ class ProductView extends StatefulWidget {
   _ProductViewState createState() => _ProductViewState();
 }
 
-class _ProductViewState extends State<ProductView> with ComponentsPage{
+class _ProductViewState extends State<ProductView> with ComponentsPage,ComponentsProduct{
 
 
 

@@ -1,5 +1,6 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/productPage/components/componentsProduct.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -12,7 +13,7 @@ class ProductOptionsView extends StatefulWidget {
   _ProductOptionsViewState createState() => _ProductOptionsViewState();
 }
 
-class _ProductOptionsViewState extends State<ProductOptionsView> with ComponentsPage{
+class _ProductOptionsViewState extends State<ProductOptionsView> with ComponentsPage,ComponentsProduct{
 
   Check _check;
   void _checkState(value,ProductViewModel productVM){
@@ -145,7 +146,8 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                     Container(
                       child: Column(
                         children: [
-                         cardCustom(context,productVM.product.name,productVM.product.urlPicture, 'R\$${productVM.product.price}', Colors.white),
+                         cardCustom(context,productVM.product.name,productVM.product.urlPicture,
+                             'R\$${productVM.product.price}', Colors.white),
                           Divider(),
                           productVM.product.options.isNotEmpty? Container(
                             height: sizeH*0.12,
@@ -171,13 +173,12 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
                               ],
                             ),
 
-                          ) :Container(height: sizeH*0.35,width: sizeW*0.9,),
+                          ) :
+                          Container(height: sizeH*0.35,width: sizeW*0.9,),
                           Builder(
                               builder: (context)=>checkedCard(productVM.product.options,
                                   context,_check,_checkState,productViewModel: productVM)
                           )
-
-
 
                         ],
                       ),
@@ -203,9 +204,6 @@ class _ProductOptionsViewState extends State<ProductOptionsView> with Components
 
                             },
                             onFieldSubmitted: (value){
-                              print(productVM.observations);
-                              print(productVM.opc);
-
 
                             },
                             decoration: InputDecoration(

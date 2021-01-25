@@ -1,4 +1,5 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/components/componentsClient.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -14,7 +15,7 @@ class ClientOptionsView extends StatefulWidget {
   _ClientOptionsViewState createState() => _ClientOptionsViewState();
 }
 
-class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsPage{
+class _ClientOptionsViewState extends State<ClientOptionsView>  with ComponentsPage,ComponentsClient{
 
   Check _check;
   CalendarController cal =CalendarController();

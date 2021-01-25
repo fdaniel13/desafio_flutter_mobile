@@ -4,6 +4,7 @@ import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
+import 'package:desafio_flutter_mobile/pages/homePage/components/componentsHistoric.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,7 +17,7 @@ class Historic extends StatefulWidget {
   _HistoricState createState() => _HistoricState();
 }
 
-class _HistoricState extends State<Historic> with ComponentsPage{
+class _HistoricState extends State<Historic> with ComponentsPage,ComponentsHistoric{
 
 
 

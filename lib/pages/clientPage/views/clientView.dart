@@ -1,4 +1,5 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
+import 'package:desafio_flutter_mobile/pages/clientPage/components/componentsClient.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/homePage/store/homeStore.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class ClientView extends StatefulWidget {
   _ClientViewState createState() => _ClientViewState();
 }
 
-class _ClientViewState extends State<ClientView> with ComponentsPage {
+class _ClientViewState extends State<ClientView> with ComponentsPage, ComponentsClient {
 
 
 
