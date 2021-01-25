@@ -78,13 +78,17 @@ class _ClientViewState extends State<ClientView> with ComponentsPage {
                   ),
                 ),
                 Observer(builder: (_){
-                  return clientVM.listReactState && homeStore.searchClient.isEmpty?
+                  return  homeStore.searchClient.isEmpty?
                   Container(
 
-                    child:  customListClients(homeStore.clients,clientVM),
+                    child:  clientVM.listReactState?
+                    customListClients(homeStore.clients,clientVM):
+                    customListClients(homeStore.clients,clientVM),
                   ):
                   Container(
-                    child: customListClients(homeStore.listSearchClient,clientVM),
+                    child:  clientVM.listReactState?
+                    customListClients(homeStore.listSearchClient,clientVM):
+                    customListClients(homeStore.listSearchClient,clientVM),
                   );
                 }),
                 Align(

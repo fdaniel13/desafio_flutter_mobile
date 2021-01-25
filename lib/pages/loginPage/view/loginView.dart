@@ -187,6 +187,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.of(context).pushReplacementNamed('/historic');
 
                       },
+
                         child: Container(
                           width: sizeW*0.9,
                           height: sizeH*0.08,
