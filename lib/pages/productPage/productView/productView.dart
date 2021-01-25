@@ -70,7 +70,6 @@ class _ProductViewState extends State<ProductView> with ComponentsPage{
                 ),
               ),
               onTap: (){
-                productVM.resetSate();
                 Navigator.of(context).pushReplacementNamed ('/clientOrdered');
 
               },
