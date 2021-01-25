@@ -393,7 +393,7 @@ mixin ComponentsPage{
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
                 child: Text('Em ${historicSolicitation.date.day}/${historicSolicitation.date.month} você vendeu R\$ '
-                    '${historicSolicitation.totalPerDay.toString().replaceAll('.',',')} ',
+                    '${historicSolicitation.totalPerDay.toStringAsFixed(2).replaceAll('.',',')} ',
                   style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w600

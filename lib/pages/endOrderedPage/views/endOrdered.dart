@@ -45,7 +45,17 @@ class _EndOrderedState extends State<EndOrdered> {
                   child: SizedBox(
                     width: sizeW*0.7,
                     height: sizeH*0.4,
-                    child: SvgPicture.asset('images/pedidoFinalizado.svg'),
+                    child: Column(
+                     children: [
+                       SvgPicture.asset('images/pedidoFinalizado.svg'),
+                       Text('Pedido realizado!',
+                       style:GoogleFonts.openSans(
+                         fontWeight: FontWeight.w400,
+                         fontSize: sizeH*0.04
+
+                       ))
+                     ],
+                    )
                   ),
                 ),
                 Positioned(
