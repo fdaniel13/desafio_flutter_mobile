@@ -1,5 +1,4 @@
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,7 +15,7 @@ enum Check{
 
 mixin ComponentsPage{
 
-
+   //retorna o titulo da pagina conforme o id passado
   Widget title (BuildContext context,{int idTitle=1}){
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -54,6 +53,7 @@ mixin ComponentsPage{
     );
   }
 
+  //retorna a descrição da pagina conforme o id passado
   Widget description(BuildContext context,{int idText=0}){
 
     double sizeW =MediaQuery.of(context).size.width;
@@ -73,6 +73,7 @@ mixin ComponentsPage{
     );
   }
 
+  //widget de busca
   Widget searchForm(BuildContext context, String search,Function _onChanged ){
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -102,6 +103,7 @@ mixin ComponentsPage{
     );
   }
 
+  //Container com dois Radio pra selecionar opções
   Widget checkedCard(List<String> opc,BuildContext context,Check _check,Function f,{ProductViewModel productViewModel,ClientViewModel clientVM}){
 
 
@@ -185,6 +187,7 @@ mixin ComponentsPage{
     );
   }
 
+  //widget que retorna a uma indicador de passoa pra concluir o pedido
   Widget steps(BuildContext context,{int nStep=1}){
 
     List<String> textTitle=[
@@ -244,6 +247,8 @@ mixin ComponentsPage{
     );
   }
 
+  //widget que cria uma snackbar ao acionar o Radio buttom, segundo Fluxo de Pedido
+  //descrito no prototipo
    snackBarCustom(BuildContext context, ProductViewModel productViewModel){
 
       Scaffold.of(context).showSnackBar(

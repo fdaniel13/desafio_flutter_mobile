@@ -13,10 +13,13 @@ class HistoricViewModel = HistoricViewModelBase with _$HistoricViewModel;
 
 abstract class HistoricViewModelBase with Store{
 
+  //Valor a ser usado na função de busca
   @observable
   String searchValue='';
 
+  //lista com o retorno do resultado da busca realizada
   ObservableList<HistoricSolicitation> listNameClient=ObservableList<HistoricSolicitation>.of([]);
+
 
   ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
     HistoricSolicitation( DateTime.utc(2021,10,23),[
@@ -42,15 +45,20 @@ abstract class HistoricViewModelBase with Store{
     shopPerDay.add(historicSolicitation);
   }
 
+  //função que ordena a lista de pedidos por data
   @computed
   get orderShopPerDayList=> shopPerDay..sort( (a,b)=>a.date.compareTo(b.date));
 
+  //função que se passa ao metodo onChanged, atualizando automaticamento valor de busca
+  //ao atualiza chama o metodo q povoa a lista com os resultados  da busca
   @action
   changeSearchValue(String value){
     searchValue=value;
     shopPerDaySearch();
   }
 
+  //se o valor de busca não é vazio essa função povoa a lista correspondente
+  //ao parametro de busca
   @action
   shopPerDaySearch(){
 

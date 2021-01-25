@@ -22,6 +22,7 @@ abstract class ClientViewModelBase with Store{
   @observable
   String data='Selecione uma data';
 
+  //parametro usado pra muda o estado da lista ao selecionar um cliente
   @observable
   bool listReactState=false;
 
@@ -111,6 +112,7 @@ abstract class ClientViewModelBase with Store{
 
   }
 
+
   @action
   resetButton(){
     data='Selecione uma data';
@@ -144,7 +146,8 @@ abstract class ClientViewModelBase with Store{
 
   }
 
-
+   //logica da seleção de clientes, se ele não ets na lista de selecionados
+  //adiciona, se ja foi previamente selecionado remove
   @action
   clickLogic(Client clientS){
     if(clientsSelected.contains(clientS)){
@@ -174,10 +177,11 @@ abstract class ClientViewModelBase with Store{
   @action
   stepFinish() {if(clientsSelected.length>0) stepComplete=true;}
 
+  //desabilita click no card de client ao se add os clientes selecionados a lista de Clientes do fluxo de pedido
   @computed
   get disableCardClient=> stepComplete==true? false : true;
 
-
+//reseta o estado da View
   @action
   resetState(){
 

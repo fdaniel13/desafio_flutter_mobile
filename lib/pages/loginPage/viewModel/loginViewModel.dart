@@ -50,7 +50,8 @@ class LoginViewModel{
   }
 
 
-
+  //altera os estados de cada campo de loguin, se campo email ta no estado de focus
+  //campo senha volta pra não Focus
   void switchTextField(String btn){
 
     switch(btn){
@@ -68,6 +69,7 @@ class LoginViewModel{
 
   }
 
+  //muda a label do email conforme o estado em que o campo se encontra
   String emailLabelText(){
 
     return this._emailFocus==false?
@@ -75,6 +77,7 @@ class LoginViewModel{
         : 'E-mail';
   }
 
+  //muda o estilo aplicado a label do email conforme o estado em que o campo se encontra
   Color emailLabelStyle(){
     return this._emailFocus==false?
             Colors.black54: Color.fromRGBO(255,136,34,1);
@@ -91,12 +94,13 @@ class LoginViewModel{
           Colors.black54: Color.fromRGBO(255,136,34,1);
   }
 
-
+//muda a cor do icone do campo senha quando se digita um valor
   Color iconPassField(){
     return this._onPassChange==true?
             Color.fromRGBO(255,136,34,1):Color.fromRGBO(255,136,34,0.5);
   }
 
+  //condição para que o botão de loguin ative suas funcionalidades
   bool buttonActivate(){
     return this._emailController.text.isNotEmpty && this._passController.text.isNotEmpty;
   }

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 mixin ComponentsHistoric{
 
+  //component widget que inicia um novo pedido
   Widget plusOrder(BuildContext context){
     double sizeW =MediaQuery.of(context).size.width;
 
@@ -34,6 +35,7 @@ mixin ComponentsHistoric{
       ),
     );
   }
+
 
   Widget cardCustom(BuildContext context,String text,String urlImage,String price,
       Color cardColor,{String subText='',Color colorText=Colors.black}){
@@ -94,6 +96,7 @@ mixin ComponentsHistoric{
     );
   }
 
+  //produz lista de pedidos por dia
   Widget customListHistoric(HistoricSolicitation historicSolicitation){
 
 
@@ -104,6 +107,7 @@ mixin ComponentsHistoric{
         itemBuilder:(context,index){
 
           var historicP = historicSolicitation.productSolicitation[index];
+
 
           return index==0?Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +128,7 @@ mixin ComponentsHistoric{
                 child: cardCustom(context,historicP.client.name,historicP.client.urlPicture,
                     '${historicP.total.toStringAsFixed(2)}',
                     Colors.white,
-                    subText: '${historicP.infoShop}'
+                    subText: '${historicP.getInfoShop()}'
 
                 ),
               )
@@ -133,11 +137,12 @@ mixin ComponentsHistoric{
             child:cardCustom(context,historicP.client.name,historicP.client.urlPicture,
                 '${historicP.total.toStringAsFixed (2)}',
                 Colors.white,
-                subText: '${historicP.infoShop}'
+                subText: '${historicP.getInfoShop()}'
             ),);
         });
   }
 
+  //cria uma lista completa do historico incluindo os pedidos de cada dia
   Widget customListGroupHistoric(List<HistoricSolicitation> historicList){
 
 

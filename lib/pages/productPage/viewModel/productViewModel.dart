@@ -14,21 +14,27 @@ abstract class ProductViewModelBase with Store {
 
   @observable
   int opc=-1;
+
+  //valor da quantidade de produtos selecionados na tela de Opções de produto
   @observable
   int quantity=1;
+
+  //lista que vai receber os produtos
   @observable
   List<Product> cartItems=[];
 
   @observable
   String observations='';
 
-
+//lista que recebe a quantidade de cada produto armazenado no carrinho de compras
   @observable
   List<int> quantityForItem=[];
+
 
   @observable
   String searchItems='';
 
+  //lista que é povoada com os valores da busca
   ObservableList<GroupProduct> listNameItem=ObservableList<GroupProduct>.of([]);
 
   @observable
@@ -57,6 +63,7 @@ abstract class ProductViewModelBase with Store {
     searchItems=value;
     shopItemSearch();
   }
+
 
   @action
   shopItemSearch(){
@@ -90,7 +97,7 @@ abstract class ProductViewModelBase with Store {
 
   }
 
-
+ //reseta as informações da compra
   @action
   resetSate(){
     product=Product('','images/justMask.png' , 0,['','']);
@@ -105,6 +112,7 @@ abstract class ProductViewModelBase with Store {
   @action
   changeProduct(Product _product)=>product=_product;
 
+
   @action
   setOptionId(int _opc){
     opc =_opc;
@@ -117,12 +125,13 @@ abstract class ProductViewModelBase with Store {
     observations=value;
   }
 
-
+//adiciona +1 a quantidade de elementos na tela De Opções do produto selecionado
   @action
   addOne(){
     quantity+=1;
   }
 
+  //remove -1 a quantidade de elementos na tela De Opções do produto selecionado
   @action
   removeOne(){
     if(quantity!=1) quantity-=1;
@@ -130,6 +139,8 @@ abstract class ProductViewModelBase with Store {
 
 
 
+  //adiciona um produto no carrinho, se ele já conta não adiciona
+  //também adiciona a quantidade a lista de quantidades
   @action
   cart(){
     if(!cartItems.contains(product)){
@@ -140,6 +151,7 @@ abstract class ProductViewModelBase with Store {
     }
   }
 
+  //reseta valor da quantidade
   @action
   resetQuantity(){
     quantity=1;
@@ -151,6 +163,8 @@ abstract class ProductViewModelBase with Store {
     return false;
   }
 
+  //valor derivado dos produtos selecionados e suas respectivas quantidades
+  //calculando o total
   @computed
   double get costTotal{
     double  cost=0;

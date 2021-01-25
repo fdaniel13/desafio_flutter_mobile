@@ -11,11 +11,13 @@ class ProductSolicitation{
   double _total;
   List<int> _quantPro;
 
+
   ProductSolicitation(this._client,this._product,this._total,this._quantPro);
 
    set client(Client client)=>this._client=client;
    set product(List<Product> product)=>this._product=product;
    set productOrder(Map<int,Product> productOrder)=>this._productOrder=productOrder;
+   set total(double total)=>this._total=total;
 
   Client get client=>this._client;
   List<Product> get product=>this._product;
@@ -35,10 +37,10 @@ class ProductSolicitation{
 
   }
 
-  String get infoShop{
+  String getInfoShop(){
     String info='';
     int index=0;
-    product.forEach((element) {
+    this._product.forEach((element) {
       info+='${quantPro[index]}x ${element.name}';
     });
 
