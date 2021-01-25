@@ -31,9 +31,20 @@ abstract class HomeStoreBase with Store{
   ObservableList<GroupProduct> listNameItem=ObservableList<GroupProduct>.of([]);
 
   ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
-    HistoricSolicitation( DateTime.utc(2021,1),[ProductSolicitation(Client('fabio','images/bairanMask.png'),
-        [Product('Cuzcuz','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-       10,[1,1])])
+    HistoricSolicitation( DateTime.utc(2021,10,23),[
+      ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
+        [Product('Cuscuz com calabresa, 1x s...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+          5.5,[1,1]),
+      ProductSolicitation(Client('Pablo Alvarez','images/hanna.png'),
+          [Product('salgado, 1x pão de queijo.','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+          5.50,[2,1]),
+        ProductSolicitation(Client('Andreia Barros','images/hanna.png'),
+            [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+            5.50,[2,1])
+    ]),
+    HistoricSolicitation( DateTime.utc(2021,10,22),[ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
+        [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+        5.50,[2,1])])
   ]);
 
 
@@ -41,8 +52,8 @@ abstract class HomeStoreBase with Store{
   ObservableList<GroupProduct> groupProduct=[
     GroupProduct('Cuscuz',
         [
-          Product('Cuscuz simples','images/cuscuzSimples.png',2.25,['milho','arroz']),
-          Product('Cuscuz completo','images/cuscuzCompleto.png',3.25,['milho','arroz'])
+          Product('Cuscuz simples','images/cuscuzSimples.png',2.25,['Cuscuz de milho','Cuscuz de arroz']),
+          Product('Cuscuz completo','images/cuscuzCompleto.png',3.25,['Cuscuz de milho','Cuscuz de arroz'])
         ]
     ),
     GroupProduct('Pães',

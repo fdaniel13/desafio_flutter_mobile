@@ -43,7 +43,7 @@ void main() {
           '/endOrdered':(context)=>EndOrdered()
 
         },
-          home:LoginView(),//Historic(),//Ordered(),// LoginView(),
+          home:Historic(),//LoginView(),//Historic(),//Ordered(),// LoginView(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               unselectedWidgetColor: Color(0xffFF8822),

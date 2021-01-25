@@ -393,7 +393,7 @@ mixin ComponentsPage{
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
                 child: Text('Em ${historicSolicitation.date.day}/${historicSolicitation.date.month} você vendeu R\$ '
-                    '${historicSolicitation.totalPerDay.toString().replaceAll('.',',')} ',
+                    '${historicSolicitation.totalPerDay.toStringAsFixed(2).replaceAll('.',',')} ',
                   style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w600
@@ -404,7 +404,7 @@ mixin ComponentsPage{
               Padding(
                 padding: const EdgeInsets.only(bottom:8.0),
                 child: cardCustom(context,historicP.client.name,historicP.client.urlPicture,
-                    '${historicP.total}',
+                    '${historicP.total.toStringAsFixed(2)}',
                     Colors.white,
                   subText: '${historicP.infoShop}'
 
@@ -413,7 +413,7 @@ mixin ComponentsPage{
             ],
           ): Padding(padding: const EdgeInsets.only(bottom:8.0),
               child:cardCustom(context,historicP.client.name,historicP.client.urlPicture,
-                  '${historicP.total}',
+                  '${historicP.total.toStringAsFixed (2)}',
                   Colors.white,
                   subText: '${historicP.infoShop}'
               ),);
@@ -664,24 +664,30 @@ mixin ComponentsPage{
                     actions: [
                       InkWell(
                         onTap: (){
+                          if(cal.selectedDay!=null){
                           clientVM.setDataSelect(cal.selectedDay);
                           Navigator.of(context).pop();
+                          }
                         },
-                        child: Container(
-                          width: sizeW*0.35,
-                          height:sizeH*0.07 ,
-                          decoration: BoxDecoration(
-                              color: Color(0xffFF8822),
-                              borderRadius: BorderRadius.circular(sizeW*0.09)
-                          ),
-                          child: Center(
-                            child: Text('CONFIRMAR',
-                              style: GoogleFonts.openSans(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white
+                        child: Observer(
+                          builder: (_){
+                            return Container(
+                              width: sizeW*0.35,
+                              height:sizeH*0.07 ,
+                              decoration: BoxDecoration(
+                                  color: clientVM.dataCalendar.isNotEmpty?Color.fromRGBO(255,136,34,1):Color.fromRGBO(255,136,34,0.5),
+                                  borderRadius: BorderRadius.circular(sizeW*0.09)
                               ),
-                            ),
-                          ),
+                              child: Center(
+                                child: Text('CONFIRMAR',
+                                  style: GoogleFonts.openSans(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       )
                     ],
