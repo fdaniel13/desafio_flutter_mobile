@@ -184,7 +184,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                       InkResponse(onTap: (){
-                        Navigator.of(context).pushReplacementNamed('/historic');
+                        if(logVM.buttonActivate()) Navigator.of(context).pushReplacementNamed('/historic');
 
                       },
 

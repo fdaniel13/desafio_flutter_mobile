@@ -97,6 +97,10 @@ class LoginViewModel{
             Color.fromRGBO(255,136,34,1):Color.fromRGBO(255,136,34,0.5);
   }
 
+  bool buttonActivate(){
+    return this._emailController.text.isNotEmpty && this._passController.text.isNotEmpty;
+  }
+
   Color singInColor(){
     return this._emailController.text.isNotEmpty && this._passController.text.isNotEmpty?
     Color.fromRGBO(255,136,34,1):Color.fromRGBO(255,136,34,0.5);
