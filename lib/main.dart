@@ -3,7 +3,7 @@ import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewMode
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/views/clientView.dart';
 import 'package:desafio_flutter_mobile/pages/endOrderedPage/views/endOrdered.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/historicViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/historicPage/views/historic.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productOptionsView.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/productView/productView.dart';
@@ -21,7 +21,7 @@ void main() {
       .then((value) => runApp(
     MultiProvider(
       providers: [
-        Provider<HomeStore>(create:(_)=>HomeStore()),
+        Provider<HistoricViewModel>(create:(_)=>HistoricViewModel()),
         Provider<ProductViewModel>(create: (_)=> ProductViewModel()),
         Provider<ClientViewModel>(create: (_)=> ClientViewModel())
 

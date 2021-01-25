@@ -1,6 +1,6 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
 import 'package:desafio_flutter_mobile/pages/historicPage/components/componentsHistoric.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/historicViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,7 @@ class _HistoricState extends State<Historic> with ComponentsPage,ComponentsHisto
 
   @override
   Widget build(BuildContext context) {
-    final homeStore = Provider.of<HomeStore>(context);
+    final historicVM = Provider.of<HistoricViewModel>(context);
 
     double sizeW =MediaQuery.of(this.context).size.width;
     double sizeH = MediaQuery.of(this.context).size.height;
@@ -50,7 +50,7 @@ class _HistoricState extends State<Historic> with ComponentsPage,ComponentsHisto
                     Container(
                       child:Column(
                         children: [
-                          searchForm(context,homeStore,1),
+                          searchForm(context,historicVM.searchValue,historicVM.changeSearchValue),
 
 
                         ],
@@ -58,9 +58,9 @@ class _HistoricState extends State<Historic> with ComponentsPage,ComponentsHisto
                     ),
                     Observer(
                       builder: (_){
-                        return homeStore.searchValue.isEmpty?
-                        customListGroupHistoric(homeStore.orderShopPerDayList)
-                            : customListGroupHistoric(homeStore.listNameClient);
+                        return historicVM.searchValue.isEmpty?
+                        customListGroupHistoric(historicVM.orderShopPerDayList)
+                            : customListGroupHistoric(historicVM.listNameClient);
 
                       },
                     ),

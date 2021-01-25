@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'homeStore.dart';
+part of 'historicViewModel.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,16 +8,16 @@ part of 'homeStore.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$HomeStore on HomeStoreBase, Store {
+mixin _$HistoricViewModel on HistoricViewModelBase, Store {
   Computed<dynamic> _$orderShopPerDayListComputed;
 
   @override
   dynamic get orderShopPerDayList => (_$orderShopPerDayListComputed ??=
           Computed<dynamic>(() => super.orderShopPerDayList,
-              name: 'HomeStoreBase.orderShopPerDayList'))
+              name: 'HistoricViewModelBase.orderShopPerDayList'))
       .value;
 
-  final _$searchValueAtom = Atom(name: 'HomeStoreBase.searchValue');
+  final _$searchValueAtom = Atom(name: 'HistoricViewModelBase.searchValue');
 
   @override
   String get searchValue {
@@ -32,39 +32,39 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  final _$HomeStoreBaseActionController =
-      ActionController(name: 'HomeStoreBase');
+  final _$HistoricViewModelBaseActionController =
+      ActionController(name: 'HistoricViewModelBase');
 
   @override
   dynamic addItem(HistoricSolicitation historicSolicitation) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.addItem');
+    final _$actionInfo = _$HistoricViewModelBaseActionController.startAction(
+        name: 'HistoricViewModelBase.addItem');
     try {
       return super.addItem(historicSolicitation);
     } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$HistoricViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic changeSearchValue(String value) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.changeSearchValue');
+    final _$actionInfo = _$HistoricViewModelBaseActionController.startAction(
+        name: 'HistoricViewModelBase.changeSearchValue');
     try {
       return super.changeSearchValue(value);
     } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$HistoricViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic shopPerDaySearch() {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.shopPerDaySearch');
+    final _$actionInfo = _$HistoricViewModelBaseActionController.startAction(
+        name: 'HistoricViewModelBase.shopPerDaySearch');
     try {
       return super.shopPerDaySearch();
     } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$HistoricViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 

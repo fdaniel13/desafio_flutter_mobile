@@ -7,11 +7,11 @@ import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:mobx/mobx.dart';
 
 
-part 'homeStore.g.dart';
+part 'historicViewModel.g.dart';
 
-class HomeStore = HomeStoreBase with _$HomeStore;
+class HistoricViewModel = HistoricViewModelBase with _$HistoricViewModel;
 
-abstract class HomeStoreBase with Store{
+abstract class HistoricViewModelBase with Store{
 
   @observable
   String searchValue='';
@@ -21,14 +21,14 @@ abstract class HomeStoreBase with Store{
   ObservableList<HistoricSolicitation> shopPerDay= ObservableList <HistoricSolicitation>.of([
     HistoricSolicitation( DateTime.utc(2021,10,23),[
       ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
-        [Product('Cuscuz com calabresa, 1x s...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+          [Product('Cuscuz com calabresa, 1x s...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
           5.5,[1,1]),
       ProductSolicitation(Client('Pablo Alvarez','images/hanna.png'),
           [Product('salgado, 1x pão de queijo.','images/cuscuzSimples.png',2.25,['milho','arroz'])],
           5.50,[2,1]),
-        ProductSolicitation(Client('Andreia Barros','images/hanna.png'),
-            [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
-            5.50,[2,1])
+      ProductSolicitation(Client('Andreia Barros','images/hanna.png'),
+          [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
+          5.50,[2,1])
     ]),
     HistoricSolicitation( DateTime.utc(2021,10,22),[ProductSolicitation(Client('Hanna Montana','images/hanna.png'),
         [Product('misto quente, 1x pão com c...','images/cuscuzSimples.png',2.25,['milho','arroz'])],
@@ -63,20 +63,20 @@ abstract class HomeStoreBase with Store{
       String _searchValue=searchValue.trim().toUpperCase();
       shopPerDay.forEach((element) {
 
-       times=element.productSolicitation.length;
+        times=element.productSolicitation.length;
 
-       for(int i=0;i<times;i++){
-         String name=element.productSolicitation[i].client.name.trim().toUpperCase();
+        for(int i=0;i<times;i++){
+          String name=element.productSolicitation[i].client.name.trim().toUpperCase();
 
-         if(name.startsWith(_searchValue)){
-           prod.add(element.productSolicitation[i]);
-         }
-       }
-         if(prod.isNotEmpty){
+          if(name.startsWith(_searchValue)){
+            prod.add(element.productSolicitation[i]);
+          }
+        }
+        if(prod.isNotEmpty){
 
-           listNameClient.add(HistoricSolicitation(element.date,prod));
-           prod=[];
-         }
+          listNameClient.add(HistoricSolicitation(element.date,prod));
+          prod=[];
+        }
       });
 
     }

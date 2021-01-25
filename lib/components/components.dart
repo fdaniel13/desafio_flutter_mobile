@@ -73,31 +73,13 @@ mixin ComponentsPage{
     );
   }
 
-  Widget searchForm(BuildContext context,HomeStore homeStore,int pag ){
+  Widget searchForm(BuildContext context, String search,Function _onChanged ){
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
 
-    String init='';
-    Function _onChanged;
-
-    switch(pag){
-      case 1:
-        init=homeStore.searchValue;
-        _onChanged=homeStore.changeSearchValue;
-        break;
-      case 2:
-        init=homeStore.searchItems;
-        _onChanged=homeStore.changeSearchItem;
-        break;
-      case 3:
-        init=homeStore.searchClient;
-        _onChanged=homeStore.changeSearchClient;
-        break;
-
-    }
 
     return TextFormField(
-      initialValue:init,
+      initialValue:search,
       onChanged:_onChanged,
       cursorColor: Color(0xffFF8822),
       decoration: InputDecoration(

@@ -1,5 +1,4 @@
 import 'package:desafio_flutter_mobile/components/components.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/components/componentsProduct.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,6 @@ class _ProductViewState extends State<ProductView> with ComponentsPage,Component
   @override
   Widget build(BuildContext context) {
 
-    final homeStore = Provider.of<HomeStore>(context);
     final productVM= Provider.of<ProductViewModel>(context);
 
     double sizeW =MediaQuery.of(context).size.width;
@@ -122,14 +120,14 @@ class _ProductViewState extends State<ProductView> with ComponentsPage,Component
                     child:Column(
                       children: [
                         steps(context),
-                        searchForm(context,homeStore,2)
+                        searchForm(context,productVM.searchItems,productVM.changeSearchItem)
 
                       ],
                     ),
                   ),
-                  homeStore.searchItems.isEmpty?
-                  customListGroupProduct (homeStore.groupProduct,productVM:productVM):
-                  customListGroupProduct (homeStore.listNameItem,productVM:productVM),
+                  productVM.searchItems.isEmpty?
+                  customListGroupProduct (productVM.groupProduct,productVM:productVM):
+                  customListGroupProduct (productVM.listNameItem,productVM:productVM),
                 ],
               ),
             );

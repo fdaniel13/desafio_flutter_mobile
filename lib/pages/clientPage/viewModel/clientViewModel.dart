@@ -27,6 +27,18 @@ abstract class ClientViewModelBase with Store{
 
   @observable
   String dataCalendar='';
+  ObservableList<Client>  listSearchClient=ObservableList<Client> .of([]);
+
+  @observable
+  String searchClient='';
+
+  @observable
+  ObservableList<Client> clients=[
+    Client('Justine Marshall', 'images/justMask.png'),
+    Client('Bairam Frootan', 'images/bairanMask.png'),
+    Client('Bairam Frootan', 'images/bariran2Mask.png')
+
+  ].asObservable();
 
   List<String> weekday=[
     'Segunda-feira', 'Terça-feira', 'Quarta-feira',
@@ -39,6 +51,36 @@ abstract class ClientViewModelBase with Store{
     'agosto', 'setembro', 'outubro',
     'novembro', 'dezembro'
   ];
+
+  @action
+  changeSearchClient(String value){
+    searchClient=value;
+    shopClientSearch();
+  }
+
+  @action
+  shopClientSearch(){
+
+
+    listSearchClient.clear();
+
+    if(searchClient.isNotEmpty) {
+
+      String _searchValue=searchClient.trim().toUpperCase();
+
+      clients.forEach((element) {
+
+        String name=element.name.trim().toUpperCase();
+
+        if(name.startsWith(_searchValue)){
+
+          listSearchClient.add(element);
+        }
+
+      });
+    }
+
+  }
 
   @action
   resetDataCalendar(){

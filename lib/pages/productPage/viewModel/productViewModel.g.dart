@@ -108,8 +108,60 @@ mixin _$ProductViewModel on ProductViewModelBase, Store {
     });
   }
 
+  final _$searchItemsAtom = Atom(name: 'ProductViewModelBase.searchItems');
+
+  @override
+  String get searchItems {
+    _$searchItemsAtom.reportRead();
+    return super.searchItems;
+  }
+
+  @override
+  set searchItems(String value) {
+    _$searchItemsAtom.reportWrite(value, super.searchItems, () {
+      super.searchItems = value;
+    });
+  }
+
+  final _$groupProductAtom = Atom(name: 'ProductViewModelBase.groupProduct');
+
+  @override
+  ObservableList<GroupProduct> get groupProduct {
+    _$groupProductAtom.reportRead();
+    return super.groupProduct;
+  }
+
+  @override
+  set groupProduct(ObservableList<GroupProduct> value) {
+    _$groupProductAtom.reportWrite(value, super.groupProduct, () {
+      super.groupProduct = value;
+    });
+  }
+
   final _$ProductViewModelBaseActionController =
       ActionController(name: 'ProductViewModelBase');
+
+  @override
+  dynamic changeSearchItem(String value) {
+    final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
+        name: 'ProductViewModelBase.changeSearchItem');
+    try {
+      return super.changeSearchItem(value);
+    } finally {
+      _$ProductViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic shopItemSearch() {
+    final _$actionInfo = _$ProductViewModelBaseActionController.startAction(
+        name: 'ProductViewModelBase.shopItemSearch');
+    try {
+      return super.shopItemSearch();
+    } finally {
+      _$ProductViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic resetSate() {
@@ -219,6 +271,8 @@ quantity: ${quantity},
 cartItems: ${cartItems},
 observations: ${observations},
 quantityForItem: ${quantityForItem},
+searchItems: ${searchItems},
+groupProduct: ${groupProduct},
 costTotal: ${costTotal}
     ''';
   }

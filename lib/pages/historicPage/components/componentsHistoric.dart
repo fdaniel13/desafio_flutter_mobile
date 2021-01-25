@@ -1,4 +1,3 @@
-import 'package:desafio_flutter_mobile/models/groupProduct.dart';
 import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

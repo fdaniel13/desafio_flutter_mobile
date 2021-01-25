@@ -1,6 +1,6 @@
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/endOrderedPage/viewModel/endOrderedViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/historicViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _EndOrderedState extends State<EndOrdered> {
   Widget build(BuildContext context) {
     final clientVM= Provider.of<ClientViewModel>(context);
     final productVM =Provider.of<ProductViewModel>(context);
-    final homeStore =Provider.of<HomeStore>(context);
+    final historicVM =Provider.of<HistoricViewModel>(context);
 
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -66,7 +66,7 @@ class _EndOrderedState extends State<EndOrdered> {
                       children: [
                         InkResponse(onTap: (){
 
-                          endOVM.completeShop(clientVM, productVM, homeStore);
+                          endOVM.completeShop(clientVM, productVM, historicVM);
 
                           productVM.resetSate();
                           clientVM.resetState();
@@ -102,7 +102,7 @@ class _EndOrderedState extends State<EndOrdered> {
                         ),
                         InkResponse(onTap: (){
 
-                          endOVM.completeShop(clientVM, productVM, homeStore);
+                          endOVM.completeShop(clientVM, productVM, historicVM);
 
                           productVM.resetSate();
                           clientVM.resetState();

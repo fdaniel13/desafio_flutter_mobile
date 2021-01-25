@@ -3,14 +3,14 @@ import 'package:desafio_flutter_mobile/models/historicSolicitation.dart';
 import 'package:desafio_flutter_mobile/models/product.dart';
 import 'package:desafio_flutter_mobile/models/productSolicitation.dart';
 import 'package:desafio_flutter_mobile/pages/clientPage/viewModel/clientViewModel.dart';
-import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/homeStore.dart';
+import 'package:desafio_flutter_mobile/pages/historicPage/viewModel/historicViewModel.dart';
 import 'package:desafio_flutter_mobile/pages/productPage/viewModel/productViewModel.dart';
 
 class EndOrderedViewModel{
 
 
 
-  completeShop(ClientViewModel clientVM,ProductViewModel productVM,HomeStore  homeStore){
+  completeShop(ClientViewModel clientVM,ProductViewModel productVM,HistoricViewModel  historicVM){
     List<Client> _client = clientVM.clientsSelected;
     String date =clientVM.data;
     List<Product> _prod = productVM.cartItems;
@@ -26,7 +26,7 @@ class EndOrderedViewModel{
 
     //Procura se a data ja ta resgistrada na lista
     //se sim keyContais assume o valor posição ondde ela está
-    homeStore.shopPerDay.forEach((element) {
+    historicVM.shopPerDay.forEach((element) {
 
       if(dateT==element.date) {
         keyContain=key;
@@ -43,13 +43,13 @@ class EndOrderedViewModel{
       listPro.add(ProductSolicitation(
           element,_prod,_total,_quantPro
       )):
-      homeStore.shopPerDay[keyContain].productSolicitation.add(ProductSolicitation(
+      historicVM.shopPerDay[keyContain].productSolicitation.add(ProductSolicitation(
           element,_prod,_total,_quantPro
       ));
 
     });
 
-    if(listPro.isNotEmpty) homeStore.addItem(HistoricSolicitation(dateT,listPro));
+    if(listPro.isNotEmpty) historicVM.addItem(HistoricSolicitation(dateT,listPro));
 
 
 

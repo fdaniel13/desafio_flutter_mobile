@@ -21,7 +21,6 @@ class _ClientViewState extends State<ClientView> with ComponentsPage, Components
   Widget build(BuildContext context) {
 
     final clientVM = Provider.of<ClientViewModel>(context);
-    final homeStore = Provider.of<HomeStore>(context);
 
     double sizeW =MediaQuery.of(context).size.width;
     double sizeH = MediaQuery.of(context).size.height;
@@ -73,23 +72,21 @@ class _ClientViewState extends State<ClientView> with ComponentsPage, Components
                   child:Column(
                     children: [
                       steps(context,nStep: 2),
-                      searchForm(context,homeStore,3)
-
+                      searchForm(context,clientVM.searchClient,clientVM.changeSearchClient)
                     ],
                   ),
                 ),
                 Observer(builder: (_){
-                  return  homeStore.searchClient.isEmpty?
+                  return  clientVM.searchClient.isEmpty?
                   Container(
-
                     child:  clientVM.listReactState?
-                    customListClients(homeStore.clients,clientVM):
-                    customListClients(homeStore.clients,clientVM),
+                    customListClients(clientVM.clients,clientVM):
+                    customListClients(clientVM.clients,clientVM),
                   ):
                   Container(
                     child:  clientVM.listReactState?
-                    customListClients(homeStore.listSearchClient,clientVM):
-                    customListClients(homeStore.listSearchClient,clientVM),
+                    customListClients(clientVM.listSearchClient,clientVM):
+                    customListClients(clientVM.listSearchClient,clientVM),
                   );
                 }),
                 Align(

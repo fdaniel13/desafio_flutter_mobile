@@ -122,8 +122,60 @@ mixin _$ClientViewModel on ClientViewModelBase, Store {
     });
   }
 
+  final _$searchClientAtom = Atom(name: 'ClientViewModelBase.searchClient');
+
+  @override
+  String get searchClient {
+    _$searchClientAtom.reportRead();
+    return super.searchClient;
+  }
+
+  @override
+  set searchClient(String value) {
+    _$searchClientAtom.reportWrite(value, super.searchClient, () {
+      super.searchClient = value;
+    });
+  }
+
+  final _$clientsAtom = Atom(name: 'ClientViewModelBase.clients');
+
+  @override
+  ObservableList<Client> get clients {
+    _$clientsAtom.reportRead();
+    return super.clients;
+  }
+
+  @override
+  set clients(ObservableList<Client> value) {
+    _$clientsAtom.reportWrite(value, super.clients, () {
+      super.clients = value;
+    });
+  }
+
   final _$ClientViewModelBaseActionController =
       ActionController(name: 'ClientViewModelBase');
+
+  @override
+  dynamic changeSearchClient(String value) {
+    final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
+        name: 'ClientViewModelBase.changeSearchClient');
+    try {
+      return super.changeSearchClient(value);
+    } finally {
+      _$ClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic shopClientSearch() {
+    final _$actionInfo = _$ClientViewModelBaseActionController.startAction(
+        name: 'ClientViewModelBase.shopClientSearch');
+    try {
+      return super.shopClientSearch();
+    } finally {
+      _$ClientViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic resetDataCalendar() {
@@ -244,6 +296,8 @@ opc: ${opc},
 data: ${data},
 listReactState: ${listReactState},
 dataCalendar: ${dataCalendar},
+searchClient: ${searchClient},
+clients: ${clients},
 colorButton: ${colorButton},
 buttonActivated: ${buttonActivated},
 disableCardClient: ${disableCardClient}
