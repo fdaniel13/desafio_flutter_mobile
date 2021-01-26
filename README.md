@@ -33,6 +33,7 @@ Algumas Imagens
 ##Dicas de Uso
 
 Para logar basta preencher os campos do formulario de Loguin, assim que o botão mudar de cor já é possivel ir para tela incial.
+Na pasta Readme tem uma pasta com o apk gerado para instalação e teste, escolher conforme o sistema, possivelmente para instalar no android é preciso habilitar nas configurações do celular permitir instalações de fontes desconhecidas.
 
 ##Ferramentas Usadas
 
